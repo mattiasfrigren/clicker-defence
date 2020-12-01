@@ -7,7 +7,6 @@ import {GameMap} from '../../../backend/data/gamemap';
     let [moveY, setMoveY] = useState(0);
     let [moveSpeedY, setMoveSpeedY] = useState(1);
     let [moveSpeedX, setMoveSpeedX] = useState(0);
-    let [position, setPosition] = useState(32);
     let [minionHealth, setMinionHealth] = useState(10);
     let [isDead, setDead] = useState(false);
 
@@ -19,7 +18,7 @@ import {GameMap} from '../../../backend/data/gamemap';
         if(elem!==null){
            
            if(elem.className ==="grass"){
-                console.log(elem);
+               
                
             let leftElem = document.getElementById(((moveY) +":"+(moveX-16)));
             

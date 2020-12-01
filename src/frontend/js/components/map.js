@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tile from './maptile';
 import {GameMap} from '../../../backend/data/gamemap';
 import Minion from './enemieMinion';
@@ -6,6 +6,14 @@ import {GrasPositionArray} from '../../../backend/data/gamemap';
 
 
 const Map = () =>{
+
+    let [wave, setWave] = useState([]);
+
+
+    const addWave = () =>{
+        setWave(wave =>  [...wave, <Minion />]);
+        console.log(wave)
+    };
 
     const drawMap =     
     
@@ -32,8 +40,11 @@ const Map = () =>{
 return(
     <div>
        
-    {drawMap} <Minion/>
-  
+    {drawMap} 
+    {wave.map((minion, index) =>(
+       <div key={index}>{minion}</div>
+    ))}
+  <button onClick={addWave}> </button>
     </div>
     );
 };
