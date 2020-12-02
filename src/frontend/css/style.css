@@ -31,3 +31,6 @@ button{
     animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
     top: 480px;
 }
+button:disabled{
+    background-color: red;
+}
