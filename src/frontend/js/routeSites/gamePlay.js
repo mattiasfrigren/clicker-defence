@@ -1,10 +1,10 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useState, useContext } from "react";
 import Tile from "../components/maptile";
 import { GameMap } from "../../../backend/data/gamemap";
-import Wave from '../components/wave';
+import Wave from "../components/wave";
+import Player from "../components/player";
 
 const GamePlay = () => {
-
   const drawMap = GameMap.map(function (row, index) {
     var i = index;
 
@@ -21,12 +21,11 @@ const GamePlay = () => {
     });
   });
 
-   
-
   return (
-    <div >
+    <div>
       {drawMap}
- <Wave/>
+      <Wave />
+      <Player />
     </div>
   );
 };

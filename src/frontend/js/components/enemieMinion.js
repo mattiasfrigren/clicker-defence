@@ -8,26 +8,23 @@ const Minion = () => {
   let [moveY, setMoveY] = useState(0);
   let [moveSpeedY, setMoveSpeedY] = useState(0.5);
   let [moveSpeedX, setMoveSpeedX] = useState(0);
-  let [minionHealth, setMinionHealth] = useState(10);
+  let [minionHealth, setMinionHealth] = useState(5);
   let [isDead, setDead] = useState(false);
+  let [coinWorth, setCoinWorth] = useState(1);
 
-
-  const currentElemDir = ()=>{
-
-    if(moveSpeedY===0.5){
+  const currentElemDir = () => {
+    if (moveSpeedY === 0.5) {
       return 3;
+    } else if (moveSpeedY === -0.5) {
+      return -3;
+    } else if (moveSpeedX === 0.5) {
+      return 1.5;
+    } else {
+      return -1.5;
     }
-    else if(moveSpeedY ===-0.5){
-      return -3
-    }
-    else if(moveSpeedX===0.5){
-      return 1.5
-    }
-    else{return -1.5}
-  }
+  };
 
   const getDirection = () => {
-    
     let elemDir = currentElemDir();
     let elem =
       moveSpeedY === 0.5 || moveSpeedY === -0.5
@@ -35,7 +32,6 @@ const Minion = () => {
         : document.getElementById(moveY + ":" + (moveX + elemDir));
 
     if (elem !== null) {
-       
       if (elem.className === "grass") {
         let leftElem = document.getElementById(moveY + ":" + (moveX - 1.5));
 
@@ -113,9 +109,9 @@ const Minion = () => {
 
     setMoveX((moveX += moveSpeedX));
     setMoveY((moveY += moveSpeedY));
-    if(moveY ===87 && moveX===15){
-        setDead(true)
-       
+    if (moveY === 87 && moveX === 15) {
+      playerContext.setPlayerHealth((playerHealth) => playerHealth - 1);
+      setDead(true);
     }
   };
 
@@ -124,6 +120,8 @@ const Minion = () => {
     console.log(minionHealth);
     setMinionHealth((minionHealth = minionHealth - playerContext.damage));
     if (minionHealth <= 0) {
+      playerContext.setPlayerGold((playerGold) => playerGold + 1);
+      console.log(playerContext.playerGold);
       setDead(true);
     }
   };
@@ -132,11 +130,10 @@ const Minion = () => {
     if (!isDead) {
       setTimeout(() => getDirection(), 40);
     }
-
-  }, [ moveX, moveY]);
+  }, [moveX, moveY]);
 
   useEffect(() => {
-    console.log(isDead + " is it dead?")
+    console.log(isDead + " is it dead?");
   }, [isDead]);
 
   return !isDead ? (
@@ -144,7 +141,7 @@ const Minion = () => {
       className="minion"
       id="enemie"
       onClick={hitMinion}
-      style={{ left: moveX - 1.2+ "vw", top: moveY - 3.6 + "vh" }}
+      style={{ left: moveX - 1.2 + "vw", top: moveY - 3.6 + "vh" }}
     ></div>
   ) : (
     <></>
