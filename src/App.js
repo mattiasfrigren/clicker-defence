@@ -1,6 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect} from 'react-router-dom';
-import Map from './frontend/js/components/gamePlay';
+import Map from './frontend/js/routeSites/gamePlay';
 import './frontend/css/style.css'
 import Wave from './frontend/js/components/wave';
 import Routes from './frontend/js/routes/Routes';
@@ -10,11 +10,7 @@ function App() {
     <div className="App">
 
 <Routes/>
-      {/**
-    <Map/>
-    <Wave/>
-
-     */}
+     
     </div>
   );
 }

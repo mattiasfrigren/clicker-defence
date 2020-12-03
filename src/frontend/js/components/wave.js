@@ -15,6 +15,7 @@ const addWave = () => {
 };
 
 const nextWave =() =>{
+  console.log(document.getElementById("87:99"))
     setNumberOfMinions(0);
     setWave([]);
 }

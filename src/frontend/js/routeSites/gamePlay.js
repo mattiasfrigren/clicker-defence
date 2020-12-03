@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useState } from "react";
-import Tile from "./maptile";
+import Tile from "../components/maptile";
 import { GameMap } from "../../../backend/data/gamemap";
-import Wave from './wave';
+import Wave from '../components/wave';
 
-const Map = () => {
+const GamePlay = () => {
 
   const drawMap = GameMap.map(function (row, index) {
     var i = index;
@@ -11,10 +11,10 @@ const Map = () => {
     return row.map(function (cell, index) {
       return (
         <Tile
-          id={i * 16 + ":" + index * 16}
+          id={i * 3 + ":" + index * 1.5}
           className={cell === 1 ? "water" : "grass"}
-          leftPos={16 * index}
-          topPos={16 * i}
+          leftPos={1.5 * index}
+          topPos={3 * i}
           key={Math.random() * 100000000}
         />
       );
@@ -31,4 +31,4 @@ const Map = () => {
   );
 };
 
-export default Map;
+export default GamePlay;

@@ -6,55 +6,71 @@ const Minion = () => {
 
   let [moveX, setMoveX] = useState(0);
   let [moveY, setMoveY] = useState(0);
-  let [moveSpeedY, setMoveSpeedY] = useState(4);
+  let [moveSpeedY, setMoveSpeedY] = useState(0.5);
   let [moveSpeedX, setMoveSpeedX] = useState(0);
   let [minionHealth, setMinionHealth] = useState(10);
   let [isDead, setDead] = useState(false);
 
+
+  const currentElemDir = ()=>{
+
+    if(moveSpeedY===0.5){
+      return 3;
+    }
+    else if(moveSpeedY ===-0.5){
+      return -3
+    }
+    else if(moveSpeedX===0.5){
+      return 1.5
+    }
+    else{return -1.5}
+  }
+
   const getDirection = () => {
     
-    let elemDir = moveSpeedY === 4 || moveSpeedX === 4 ? 16 : -16;
+    let elemDir = currentElemDir();
     let elem =
-      moveSpeedY === 4 || moveSpeedY === -4
+      moveSpeedY === 0.5 || moveSpeedY === -0.5
         ? document.getElementById(moveY + elemDir + ":" + moveX)
         : document.getElementById(moveY + ":" + (moveX + elemDir));
 
     if (elem !== null) {
        
       if (elem.className === "grass") {
-        let leftElem = document.getElementById(moveY + ":" + (moveX - 16));
+        let leftElem = document.getElementById(moveY + ":" + (moveX - 1.5));
 
-        let righttElem = document.getElementById(moveY + ":" + (moveX + 16));
+        let righttElem = document.getElementById(moveY + ":" + (moveX + 1.5));
 
-        let bottomElem = document.getElementById(moveY + 16 + ":" + moveX);
+        let bottomElem = document.getElementById(moveY + 3 + ":" + moveX);
 
-        let topElem = document.getElementById(moveY - 16 + ":" + moveX);
+        let topElem = document.getElementById(moveY - 3 + ":" + moveX);
+
         {
           /* send right*/
         }
         if (
           (bottomElem.className === "grass" &&
             righttElem.className === "water" &&
-            (moveSpeedY === 4 || moveSpeedX === 4)) ||
+            (moveSpeedY === 0.5 || moveSpeedX === 0.5)) ||
           (righttElem.className === "water" &&
             leftElem.className === "grass" &&
             topElem.className === "grass" &&
-            moveSpeedY === -4)
+            moveSpeedY === -0.5)
         ) {
           setMoveSpeedY((moveSpeedY = 0));
-          setMoveSpeedX((moveSpeedX = 4));
+          setMoveSpeedX((moveSpeedX = 0.5));
         } else if (
           (righttElem.className === "grass" &&
             topElem.className === "grass" &&
             bottomElem.className === "water" &&
             leftElem.className === "water" &&
-            moveSpeedY !== -4) ||
+            moveSpeedY !== -0.5) ||
           (leftElem.className === "grass" &&
             topElem.className === "grass" &&
             bottomElem.className === "water" &&
-            moveSpeedX === -4)
+            moveSpeedX === -0.5)
         ) {
-          setMoveSpeedY((moveSpeedY = 4));
+          setMoveSpeedY((moveSpeedY = 0.5));
           setMoveSpeedX((moveSpeedX = 0));
           {
             /* send bottom*/
@@ -63,15 +79,15 @@ const Minion = () => {
           (bottomElem.className === "grass" &&
             righttElem.className === "grass" &&
             leftElem.className === "water" &&
-            moveSpeedY === 4) ||
+            moveSpeedY === 0.5) ||
           (bottomElem.className === "water" &&
             righttElem.className === "grass" &&
             leftElem.className === "water" &&
             topElem.className === "grass" &&
-            moveSpeedY === -4)
+            moveSpeedY === -0.5)
         ) {
           setMoveSpeedY((moveSpeedY = 0));
-          setMoveSpeedX((moveSpeedX = -4));
+          setMoveSpeedX((moveSpeedX = -0.5));
           {
             /* send left*/
           }
@@ -84,9 +100,9 @@ const Minion = () => {
             bottomElem.className === "grass" &&
             leftElem.className === "grass" &&
             topElem.className === "water" &&
-            moveSpeedX === -4)
+            moveSpeedX === -0.5)
         ) {
-          setMoveSpeedY((moveSpeedY = -4));
+          setMoveSpeedY((moveSpeedY = -0.5));
           setMoveSpeedX((moveSpeedX = 0));
           {
             /* send top*/
@@ -97,7 +113,7 @@ const Minion = () => {
 
     setMoveX((moveX += moveSpeedX));
     setMoveY((moveY += moveSpeedY));
-    if(moveY ===464 && moveX===160){
+    if(moveY ===87 && moveX===15){
         setDead(true)
        
     }
@@ -114,7 +130,7 @@ const Minion = () => {
 
   useEffect(() => {
     if (!isDead) {
-      setTimeout(() => getDirection(), 20);
+      setTimeout(() => getDirection(), 40);
     }
 
   }, [ moveX, moveY]);
@@ -128,7 +144,7 @@ const Minion = () => {
       className="minion"
       id="enemie"
       onClick={hitMinion}
-      style={{ left: moveX + "px", top: moveY + "px" }}
+      style={{ left: moveX - 1.2+ "vw", top: moveY - 3.6 + "vh" }}
     ></div>
   ) : (
     <></>

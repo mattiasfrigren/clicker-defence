@@ -1,27 +1,53 @@
+body{
+
+}
+
 .water{
     background-color: blue;
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 16px;
-    height: 16px;    
+    width: 1.5vw;
+    height: 3vh;   
 }
 .grass{
 background-color: green;
 position: absolute;
 top: 0px;
 left: 0px;
-width: 16px;
-height: 16px;    
+width: 1.5vw;
+height: 3vh;   
 }
 .minion{
     background-color: red;
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 16px;
-    height: 16px;    
+    width: 1.5vw;
+    height: 3vh;      
+}
+
+#enemie{
+    width:  3.90625vw;
+    height:  8.19672131147541vh;
+    background: url('../../backend/resoruces/images/Character2/Run.png') left center;
+    background-size: cover;
+    animation: playRun 1.5s steps(6) infinite;
+    display: inline-block;
+}
+#enemie:active{
+    background: url('../../backend/resoruces/images/Character2/Take Hit.png') left center;
+    animation: playTakeHit 0.1s steps(4) infinite;
+}
+
+@keyframes playTakeHit {
+    100% {background-position: 15.625vw;}
     }
+
+@keyframes playRun {
+100% {background-position: 23.4375vw;}
+}
+
 button{
     position: absolute;
     width: 30px;

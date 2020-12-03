@@ -6,7 +6,7 @@ const Tile = ({id, className , leftPos, topPos}) =>{
         <div
         id={id}
         className={className}
-        style ={{left: leftPos + "px", top: topPos + "px"}}
+        style ={{left: leftPos + "vw", top: topPos + "vh"}}
         >
         </div>
     );
