@@ -30,7 +30,7 @@ const Wave = () => {
   return (
     <div>
       {currentWave}
-      <button disabled={numberOfMinions !== 13} onClick={nextWave}>
+      <button id="startButton" disabled={numberOfMinions !== 13} onClick={nextWave}>
         {" "}
       </button>
     </div>

@@ -1,67 +1,108 @@
-body{
-   
+body {
+  background-color: gray;
 }
-.water{
-    background-color: blue;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 1.5vw;
-    height: 3vh;   
+.water {
+  background-color: blue;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1.5vw;
+  height: 3vh;
 }
-.grass{
-background-color: green;
-position: absolute;
-top: 0px;
-left: 0px;
-width: 1.5vw;
-height: 3vh;   
+.grass {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1.5vw;
+  height: 3vh;
 }
-.minion{
-    background-color: red;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 1.5vw;
-    height: 3vh;      
+.minion {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1.5vw;
+  height: 3vh;
 }
 
-#enemie{
-    width:  3.90625vw;
-    height:  8.19672131147541vh;
-    background: url('../../backend/resoruces/images/Character2/Run.png') left center;
-    background-size: cover;
-    animation: playRun 1.5s steps(6) infinite;
-    display: inline-block;
+#enemie {
+  width: 3.90625vw;
+  height: 8.19672131147541vh;
+  background: url("../../backend/resoruces/images/Character2/Run.png") left
+    center;
+  background-size: cover;
+  animation: playRun 1.5s steps(6) infinite;
+  display: inline-block;
 }
-#enemie:active{
-    background: url('../../backend/resoruces/images/Character2/Take Hit.png') left center;
-    animation: playTakeHit 0.1s steps(4) infinite;
+#enemie:active {
+  background: url("../../backend/resoruces/images/Character2/Take Hit.png") left
+    center;
+  animation: playTakeHit 0.1s steps(4);
 }
 
 @keyframes playTakeHit {
-    100% {background-position: 15.625vw;}
-    }
+  100% {
+    background-position: 15.625vw;
+  }
+}
 
 @keyframes playRun {
-100% {background-position: 23.4375vw;}
+  100% {
+    background-position: 23.4375vw;
+  }
 }
 
-#playerValues{
-position: absolute;
-border: solid 2px black ;
-top: 70vh;
-left: 5vw;
+#playerValues {
+  position: absolute;
+  border: solid 2px black;
+  top: 70vh;
+  left: 5vw;
 }
-button{
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: blue;
-    border-radius: 50%;
-    animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
-    top: 480px;
+#startButton {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  border-radius: 50%;
+  animation: blinker 1s cubic-bezier(0.5, 0, 1, 1) infinite alternate;
+  top: 480px;
 }
-button:disabled{
-    background-color: red;
+#startButton:disabled {
+  background-color: red;
+}
+.iconButtons {
+  position: absolute;
+  width: 9.4vw;
+  height: 9vh;
+  background-color: rgb(56, 55, 55);
+  color: rgb(56, 55, 55);
+}
+button.iconButtons {
+  outline: none;
+  border: none;
+}
+img.iconButtons {
+  display: block;
+  border: solid 0.5vh rgb(56, 55, 55);
+  border-radius: 5%;
+  z-index: 1;
+  top: -0.5vh;
+  left: 0;
+}
+.iconButtons:hover {
+  animation: blink normal 1s infinite ease-in-out;
+}
+.iconButtons:active {
+  top: 0.15vh;
+  opacity: 0.5;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 1;
+  }
 }
