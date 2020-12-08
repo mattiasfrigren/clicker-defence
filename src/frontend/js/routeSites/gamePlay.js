@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState, useContext } from "react";
 import Tile from "../components/maptile";
-import { GameMap } from "../../../backend/data/gamemap";
+import { GameMap } from "../../../backend/commonutils/gamemap";
 import Wave from "../components/wave";
 import Player from "../components/player";
 import ButtonComponent from '../components/buttonComp';
