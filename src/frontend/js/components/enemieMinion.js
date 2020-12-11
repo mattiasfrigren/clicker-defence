@@ -12,6 +12,11 @@ const Minion = () => {
   let [isDead, setDead] = useState(false);
   let [coinWorth, setCoinWorth] = useState(1);
 
+  const [playerDamage, setPlayerDamage] = useState(1);
+  const [playerHealth, setPlayerHealth] = useState(1);
+  const [playerGold, setPlayerGold] = useState(1);
+  
+
   const currentElemDir = () => {
     if (moveSpeedY === 0.5) {
       return 3;
@@ -110,7 +115,7 @@ const Minion = () => {
     setMoveX((moveX += moveSpeedX));
     setMoveY((moveY += moveSpeedY));
     if (moveY === 87 && moveX === 15) {
-      playerContext.setPlayerHealth((playerHealth) => playerHealth - 1);
+      playerContext.setPlayerAttribute({"health":(playerHealth-1)});
       setDead(true);
     }
   };
@@ -118,10 +123,10 @@ const Minion = () => {
   const hitMinion = (e) => {
     console.log(e.type);
     console.log(minionHealth);
-    setMinionHealth((minionHealth = minionHealth - playerContext.damage));
+    setMinionHealth((minionHealth = minionHealth - playerDamage));
     if (minionHealth <= 0) {
-      playerContext.setPlayerGold((playerGold) => playerGold + 1);
-      console.log(playerContext.playerGold);
+      playerContext.setPlayerAttribute({"money":(playerGold +coinWorth)});
+      console.log(playerGold);
       setDead(true);
     }
   };
@@ -135,6 +140,12 @@ const Minion = () => {
   useEffect(() => {
     console.log(isDead + " is it dead?");
   }, [isDead]);
+
+  useEffect(()=>{
+    playerContext.getPlayerValue(setPlayerDamage,"admin","damage");
+    playerContext.getPlayerValue(setPlayerHealth,"admin","health");
+    playerContext.getPlayerValue(setPlayerGold,"admin","money");
+  })
 
   return !isDead ? (
     <div

@@ -16,6 +16,7 @@ import Bomb from "../../../backend/resoruces/images/icons/bomb.png";
 import Heart from "../../../backend/resoruces/images/icons/heart.png";
 import Grass from '../../../backend/resoruces/images/tiles/grasstile.png'
 import Water from '../../../backend/resoruces/images/tiles/water.png'
+import InGameMenu from '../components/inGameMenu';
 
 const ButtonIcons = [
   Punch,
@@ -75,6 +76,7 @@ const testFunc =(e) =>{
       {drawMap}
       <Wave />
       <Player />
+      <InGameMenu/>
       {drawButtons}
     </div>
   );

@@ -1,5 +1,20 @@
+@font-face{
+  font-family: 'VT323', monospace;
+  src: url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+}
+button{
+  font-family: 'VT323', monospace
+}
+html{
+  
+  font-family: 'VT323', monospace;
+}
 body {
   background-color: gray;
+}
+
+h3{
+  color: black;
 }
 .water {
   background-color: blue;
@@ -104,5 +119,43 @@ img.iconButtons {
   }
   100% {
     opacity: 1;
+  }
+}
+/*//////////*/
+/*ingameMenu*/
+/*//////////*/
+
+.menubutton{
+  width:15vw;
+  height: 7.5vh;
+  background-color: greenyellow;
+  border-radius: 15%;
+font-size: 120%;
+}
+#inGameMenu{
+  background-color: rgb(73, 117, 11);
+  border-radius: 12%;
+  text-align: center;
+  position: absolute;
+  width: 24vw;
+  height: 80vh;
+  left: 75vw;
+  
+}
+.menubuttondiv{
+  margin: 15%;
+  border: solid black 2px;
+}
+#menuImgHolder{
+
+  width: 3.90625vw;
+  height: 8.19672131147541vh;
+  background: url("../../backend/resoruces/images/Character2/ingameidle.png") left
+    center;
+  animation: playidlemenu 1s steps(16) infinite;
+}
+@keyframes playidlemenu{
+  100% {
+    background-position: 62.5vw;
   }
 }
