@@ -15,9 +15,9 @@ function getPlayerValue(setAttribute, key, attribute) {
   });
 }
 
-function setPlayerAttribute(newDamage) {
+function setPlayerAttribute(newAttribute) {
   
-    dataService.update("admin",newDamage)
+    dataService.update("admin",newAttribute)
  }
  
   

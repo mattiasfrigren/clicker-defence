@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Minion from "./enemieMinion";
 
-const Wave = () => {
+const Wave =() => {
   let [wave, setWave] = useState([]);
   let [numberOfMinions, setNumberOfMinions] = useState(13);
 
@@ -12,7 +12,6 @@ const Wave = () => {
   };
 
   const nextWave = () => {
-    console.log(document.getElementById("87:99"));
     setNumberOfMinions(0);
     setWave([]);
   };
@@ -20,6 +19,8 @@ const Wave = () => {
   const currentWave = wave.map((minion, index) => (
     <div key={index}>{minion}</div>
   ));
+
+
 
   useEffect(() => {
     if (numberOfMinions < 13) {
@@ -29,7 +30,7 @@ const Wave = () => {
 
   return (
     <div>
-      {currentWave}
+      {currentWave} 
       <button id="startButton" disabled={numberOfMinions !== 13} onClick={nextWave}>
         {" "}
       </button>

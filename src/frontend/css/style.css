@@ -38,6 +38,12 @@ h3{
   width: 1.5vw;
   height: 3vh;
 }
+.minionDiv{
+  position: fixed;
+  top: 0;;
+  left: 0;
+  
+}
 
 #enemie {
   width: 3.90625vw;
@@ -103,8 +109,9 @@ img.iconButtons {
   top: -0.5vh;
   left: 0;
 }
-.iconButtons:hover {
+.iconButtons:hover{
   animation: blink normal 1s infinite ease-in-out;
+  
 }
 .iconButtons:active {
   top: 0.15vh;
@@ -140,7 +147,7 @@ font-size: 120%;
   width: 24vw;
   height: 80vh;
   left: 75vw;
-  
+
 }
 .menubuttondiv{
   margin: 15%;
@@ -152,10 +159,27 @@ font-size: 120%;
   height: 8.19672131147541vh;
   background: url("../../backend/resoruces/images/Character2/ingameidle.png") left
     center;
-  animation: playidlemenu 1s steps(16) infinite;
+  animation: playidlemenu 2.2s steps(16) infinite;
 }
 @keyframes playidlemenu{
   100% {
     background-position: 62.5vw;
   }
 }
+
+
+/*//////////*/
+/*PopUp*/
+/*//////////*/
+.popUp{
+  position: absolute;
+  display: block;
+  background-color: white;
+  top: 60vh;
+  border: 1px solid black;
+  width: 10vw;
+  left: 75vw;
+  opacity: 0.4;
+}
+
+

@@ -7,6 +7,7 @@ const MenuButton = ({id, className, onClick, leftPos, topPos, name }) => {
 className = {className}
 onClick ={onClick}
 style={{ left: leftPos + "vw", top: topPos + "vh" }}
+
 >
 {name}
 </button>

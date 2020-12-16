@@ -120,15 +120,19 @@ const Minion = () => {
     }
   };
 
-  const hitMinion = (e) => {
-    console.log(e.type);
-    console.log(minionHealth);
-    setMinionHealth((minionHealth = minionHealth - playerDamage));
+  const isMinionDead =() =>{
     if (minionHealth <= 0) {
       playerContext.setPlayerAttribute({"money":(playerGold +coinWorth)});
       console.log(playerGold);
       setDead(true);
     }
+  }
+
+  const hitMinion = (e) => {
+    console.log(e.type);
+    console.log(minionHealth);
+    setMinionHealth((minionHealth = minionHealth - playerDamage));
+    isMinionDead();
   };
 
   useEffect(() => {

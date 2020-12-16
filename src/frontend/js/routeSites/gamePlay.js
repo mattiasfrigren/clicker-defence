@@ -49,9 +49,7 @@ const GamePlay = () => {
     });
   });
 
-const testFunc =(e) =>{
-  console.log(e.type);
-}
+
 
   const drawButtons = ButtonIcons.map(function(icon, index) {
     return(
@@ -60,7 +58,6 @@ const testFunc =(e) =>{
   key ={Math.random()* 10000000}
   id = {"iconButton"+index}
   className ={"iconButtons"}
-  onClick = {testFunc}
   leftPos = {9.9 *index}
   topPos = {90}
   imageSrc = {icon}
@@ -74,7 +71,7 @@ const testFunc =(e) =>{
   return (
     <div>
       {drawMap}
-      <Wave />
+ 
       <Player />
       <InGameMenu/>
       {drawButtons}
