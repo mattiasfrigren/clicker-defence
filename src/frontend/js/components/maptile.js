@@ -9,7 +9,7 @@ const Tile = ({ id, className, leftPos, topPos, imageSrc }) => {
     >
 <img src ={imageSrc}
 alt={imageSrc}
-className ={className}
+className ={className+"img"}
 ></img>
     </div>
   );

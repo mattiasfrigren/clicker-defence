@@ -12,6 +12,7 @@ const HandleEnemiesButton = ({
   imageSrc,
   onClick,
   name,
+  playerValues,
 }) => {
   const playerContext = useContext(PlayerContext);
   const [isPopUpShown, setIsPopUpShown] = useState(false);
@@ -29,19 +30,73 @@ const HandleEnemiesButton = ({
   };
 
   const nextWave = (e) => {
-    e.target.disabled =true;
-      console.log(e.target.disabled)
+    e.target.disabled = true;
+    playerContext.setIsGameRunning(true);
     setNumberOfMinions(0);
     setWave([]);
-    setTimeout(()=>{
-        e.target.disabled=false
-    },68000)
+    setTimeout(() => {
+      e.target.disabled = false;
+    }, 68000);
   };
- 
 
   const currentWave = wave.map((minion, index) => (
-    <div key={index}>{minion}</div>
+    <div key={index} className={"minionDiv"}>
+      {minion}
+    </div>
   ));
+
+  const castThunder = () => {
+    const cost = 50;
+    if (playerGold >= cost) {
+      playerContext.setPlayerAttribute({ money: playerGold - cost });
+      playerContext.setIsThunder(true);
+    } else {
+      console.log("not gold for it");
+    }
+  };
+
+  const renderButton =
+    className !== "menubutton" ? (
+      <div>
+        <button
+          id={id + name}
+          key={Math.random() * 100000000}
+          className={className}
+          onClick={
+            name !== "Lightning"
+              ? () => {
+                  console.log("done");
+                }
+              : castThunder
+          }
+          style={{ left: leftPos + "vw", top: topPos + "vh" }}
+          onMouseEnter={() => setIsPopUpShown(true)}
+          onMouseLeave={() => setIsPopUpShown(false)}
+        >
+          <img src={imageSrc} alt={imageSrc} className={className}></img>
+        </button>
+        {isPopUpShown ? (
+          <PopUp
+            key={Math.random() * 100000000}
+            id={id}
+            content={10 + " current cost"}
+          />
+        ) : (
+          <></>
+        )}
+      </div>
+    ) : (
+      <div>
+        <MenuButton
+          id={id}
+          className={MenuButton.name.toLowerCase()}
+          onClick={nextWave}
+          leftPos={leftPos}
+          topPos={topPos}
+          name={name}
+        />
+      </div>
+    );
 
   useEffect(() => {
     if (numberOfMinions < 13) {
@@ -50,49 +105,16 @@ const HandleEnemiesButton = ({
   }, [numberOfMinions]);
 
   useEffect(() => {
-    playerContext.getPlayerValue(setPlayerDamage, "admin", "damage");
-    playerContext.getPlayerValue(setPlayerHealth, "admin", "health");
-    playerContext.getPlayerValue(setPlayerGold, "admin", "money");
-  
+    playerContext.getPlayerValue(setPlayerDamage, playerValues.props.location.state.userName, "damage");
+    playerContext.getPlayerValue(setPlayerHealth, playerValues.props.location.state.userName, "health");
+    playerContext.getPlayerValue(setPlayerGold, playerValues.props.location.state.userName, "money");
+    
   });
 
-  return className !== "menubutton" ? (
+  return (
     <div>
-       <div className="minionDiv">{currentWave}</div>
-      <button
-        id={id}
-        key={Math.random() * 100000000}
-        className={className}
-        onClick={() => {
-          console.log("done");
-        }}
-        style={{ left: leftPos + "vw", top: topPos + "vh" }}
-        onMouseEnter={() => setIsPopUpShown(true)}
-        onMouseLeave={() => setIsPopUpShown(false)}
-      >
-        <img src={imageSrc} alt={imageSrc} className={className}></img>
-      </button>
-      {isPopUpShown ? (
-        <PopUp
-          key={Math.random() * 100000000}
-          id={id}
-          content={10 + " current cost"}
-        />
-      ) : (
-        <></>
-      )}
-    </div>
-  ) : (
-      <div>
-    <div className="minionDiv">{currentWave}</div>
-    <MenuButton
-      id={id}
-      className={MenuButton.name.toLowerCase()}
-      onClick={nextWave}
-      leftPos={leftPos}
-      topPos={topPos}
-      name={name}
-    />
+      {currentWave}
+      {renderButton}
     </div>
   );
 };

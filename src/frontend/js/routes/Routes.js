@@ -19,7 +19,7 @@ function Routes()  {
 
 
 
-<ProtectedRoute exact={true} path="/login" component={Login} />
+<ProtectedRoute exact={true} path="/" component={Login} />
 
 <ProtectedRoute exact={true} path="/register" component={Register} />
 

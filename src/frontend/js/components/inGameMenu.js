@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import MenuButton from "./menuButtonComp";
-import Wave from "./wave";
 import HandleEnemiesButton from "./handleEnemiesButtons";
+import ActionButtonComponent from './actionbuttonComp';
 import Punch from "../../../backend/resoruces/images/icons/punch.png";
 import Healing from "../../../backend/resoruces/images/icons/healing.png";
 import Lightning from "../../../backend/resoruces/images/icons/lightning.png";
@@ -13,42 +13,66 @@ import Random from "../../../backend/resoruces/images/icons/random.png";
 import Bomb from "../../../backend/resoruces/images/icons/bomb.png";
 import Heart from "../../../backend/resoruces/images/icons/heart.png";
 
-const ButtonIcons = [
-  Punch,
-  Healing,
-  Lightning,
-  Moneybag,
-  Randompotion,
-  Scary,
-  Attack,
-  Random,
-  Bomb,
-  Heart,
+const handleEnemiesButtonIcons = [
+  [Lightning,"Lightning"],
+  [Scary,"Scary"],
+  [Random,"Random"],
+  [Bomb,"Bomb"]
 ];
 
-const actionButtons = ButtonIcons.map(function (icon, index) {
-  return (
-    <div key={Math.random() * 10000000} id="inGameButtonDiv">
-      <HandleEnemiesButton
-        key={Math.random() * 10000000}
-        id={"iconButton" + index}
-        className={"iconButtons"}
-        leftPos={9.9 * index}
-        topPos={90}
-        imageSrc={icon}
-      ></HandleEnemiesButton>
-    </div>
-  );
-});
+const playerActionButtonIcons = [
+  [Punch,"Punch"],
+  [Attack,"CriticalStrike"],
+  [Healing,"Healing"],
+  [Moneybag,"MoneyBag"],
+  [Randompotion,"Randompotion"],
+  [Heart,"Heart"]
+];
 
-const InGameMenu = () => {
+
+
+const InGameMenu = (props) => {
   const menuButtonsName = ["Start", "Info", "Option", "Save and Exit"];
   const ref = useRef(null);
 
   const start = () => {
     console.log(ref.current);
-    ref.current.nextWave();
+    
   };
+
+  const playerActionButtons = playerActionButtonIcons.map(function ([icon,iconName], index) {
+    return (
+      <div key={Math.random() * 10000000} id="inGameButtonDiv">
+        <ActionButtonComponent
+          key={Math.random() * 10000000}
+          id={"iconButton" + index}
+          iconName ={iconName}
+          className={"iconButtons"}
+          leftPos={9.9 * (index + handleEnemiesButtonIcons.length )}
+          topPos={90}
+          imageSrc={icon}
+          playerValues={props}
+        ></ActionButtonComponent>
+      </div>
+    );
+  });
+  
+  const handleEnemiesActionButtons = handleEnemiesButtonIcons.map(function ([icon,iconName], index) {
+    return (
+      <div key={Math.random() * 10000000} id="inGameButtonDiv">
+        <HandleEnemiesButton
+          key={Math.random() * 10000000}
+          id={"iconButton" + index}
+          className={"iconButtons"}
+          leftPos={9.9 * index}
+          topPos={90}
+          imageSrc={icon}
+          name={iconName}
+          playerValues={props}
+        ></HandleEnemiesButton>
+      </div>
+    );
+  });
 
   const mapMenuButtons = menuButtonsName.map((name, index) => {
     return name !== "Start" ? (
@@ -73,6 +97,7 @@ const InGameMenu = () => {
           leftPos={60}
           topPos={10 * index}
           name={name}
+          playerValues={props}
         />
       </div>
     );
@@ -80,21 +105,23 @@ const InGameMenu = () => {
 
   return (
     <div>
-      
     <div id="inGameMenu">
       
       {mapMenuButtons}
 
       <div id={"menuImgHolder"} className={"menubuttondiv"}></div>
     </div>
+    
+    {handleEnemiesActionButtons}
+      {playerActionButtons}
     </div>
   );
 };
 
 export default InGameMenu;
 
-{/** set up action buttons for this rend aswell. might need to change the css a lite bit for screen purpose in the new div. 
+{/** set us for this rend aswell. might need to change the css a lite bit for screen purpose in the new div. 
 alsow make sure att the ButtonComp will rename to "actionButtonComp" or something since there are 2 types of action buttons. "handkeEnemies"
-and the other one that will effect the player and playstyle. 
+and the other one that will effect thep action button player and playstyle. 
                             U CAN DO DIS!!!!!!
 */}

@@ -18,4 +18,4 @@ import "firebase/database";
 
 firebase.initializeApp(firebaseConfig);
 
-export default firebase.database();
+export default firebase;

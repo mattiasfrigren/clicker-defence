@@ -183,3 +183,17 @@ font-size: 120%;
 }
 
 
+/*//////////*/
+/*Effects*/
+/*//////////*/
+/*https://www.deviantart.com/allforn/art/Pixel-lightning-630056321 ---- lighting effect source*/
+.specialEffects {
+  position: absolute;
+  display: block;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.4;
+}

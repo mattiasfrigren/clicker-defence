@@ -8,14 +8,14 @@ const Minion = () => {
   let [moveY, setMoveY] = useState(0);
   let [moveSpeedY, setMoveSpeedY] = useState(0.5);
   let [moveSpeedX, setMoveSpeedX] = useState(0);
-  let [minionHealth, setMinionHealth] = useState(5);
+  let [minionHealth, setMinionHealth] = useState(10);
   let [isDead, setDead] = useState(false);
   let [coinWorth, setCoinWorth] = useState(1);
 
   const [playerDamage, setPlayerDamage] = useState(1);
   const [playerHealth, setPlayerHealth] = useState(1);
   const [playerGold, setPlayerGold] = useState(1);
-  
+  const [playerCritChance, setPlayerCritChance] = useState(0);
 
   const currentElemDir = () => {
     if (moveSpeedY === 0.5) {
@@ -118,6 +118,7 @@ const Minion = () => {
       playerContext.setPlayerAttribute({"health":(playerHealth-1)});
       setDead(true);
     }
+    isMinionDead();
   };
 
   const isMinionDead =() =>{
@@ -131,9 +132,23 @@ const Minion = () => {
   const hitMinion = (e) => {
     console.log(e.type);
     console.log(minionHealth);
+    
+    if(playerCritChance >= (Math.floor(Math.random()*101))){
+      setMinionHealth((minionHealth = minionHealth - (playerDamage * 2)));
+      console.log("criticalStrike for " + playerDamage * 2)
+    }
+    else{ 
     setMinionHealth((minionHealth = minionHealth - playerDamage));
-    isMinionDead();
+  }
   };
+
+  useEffect(()=>{
+    if(playerContext.isThunder){
+      setMinionHealth(minionHealth = minionHealth -5);
+      playerContext.setIsThunder(false);
+    }
+
+  },[playerContext.isThunder]);
 
   useEffect(() => {
     if (!isDead) {
@@ -149,7 +164,8 @@ const Minion = () => {
     playerContext.getPlayerValue(setPlayerDamage,"admin","damage");
     playerContext.getPlayerValue(setPlayerHealth,"admin","health");
     playerContext.getPlayerValue(setPlayerGold,"admin","money");
-  })
+    playerContext.getPlayerValue(setPlayerCritChance,"admin","cirticalChance");
+  });
 
   return !isDead ? (
     <div
