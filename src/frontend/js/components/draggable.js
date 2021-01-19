@@ -1,10 +1,19 @@
 import {useState,useRef,useEffect} from 'react'
 
-function UseDragging() {
+function UseDragging(X,Y) {
     const [isDragging, setIsDragging] = useState(false);
-    const [pos, setPos] = useState({ x: 0, y: 0 });
+    const [pos, setPos] = useState({ x: X, y: Y });
+    const [refreshPos, setRefreshPos] = useState(false);
+
     const ref = useRef(null);
   
+
+    function refresh(){
+      setPos({x:X, y:Y});
+      
+      setRefreshPos(false);
+    }
+
     function onMouseMove(e) {
       if (!isDragging) return;
       setPos({
@@ -59,7 +68,13 @@ function UseDragging() {
       };
     }, [isDragging]);
   
-    return [ref, pos.x, pos.y, isDragging];
+    useEffect(()=>{
+      if(refreshPos){
+        refresh();
+      }
+    },[refreshPos]);
+
+    return [ref, pos.x, pos.y, isDragging, setRefreshPos];
   }
 
   export default UseDragging;

@@ -1,10 +1,10 @@
 import React, { useState,  useContext } from "react";
 import { NavLink } from "react-router-dom";
-import {PlayerContext} from '../context/playerContext';
+import { AuthContext } from "../context/authenticatContext";
 
 const Register = () => {
 
-    const playerContext = useContext(PlayerContext);
+    const authContext = useContext(AuthContext);
 
   const [user, setUser] = useState({
     userName: "",
@@ -38,7 +38,7 @@ const Register = () => {
             email: user.email,
         }
 
-        playerContext.createNewPlayer(data);
+        authContext.createNewPlayer(data);
         setInfoMessage("account Created!")
     }
 console.log(e);

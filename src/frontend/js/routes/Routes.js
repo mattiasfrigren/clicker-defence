@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Switch, Redirect} from 'react-router-dom';
+import { BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
 import GamePlay from '../routeSites/gamePlay';
 import Login from '../routeSites/login';
 import Register from '../routeSites/register';
@@ -18,14 +18,13 @@ function Routes()  {
     <div>
 
 
+<Route exact={true} path="/" component={Login} />
 
-<ProtectedRoute exact={true} path="/" component={Login} />
-
-<ProtectedRoute exact={true} path="/register" component={Register} />
+<Route exact={true} path="/register" component={Register} />
 
 <ProtectedRoute exact={true} path="/gameplay" component={GamePlay} />
 
-<ProtectedRoute exact={true} path="/404" component={FourOFour} />
+<Route exact={true} path="/404" component={FourOFour} />
 
     </div>
     

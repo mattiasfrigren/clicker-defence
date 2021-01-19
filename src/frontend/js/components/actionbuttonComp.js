@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect, useRef} from 'react'
 import {PlayerContext} from '../context/playerContext';
 import PopUp from './popupComp';
 
-const ActionButtonComponent = ({id, className, leftPos, topPos, imageSrc, iconName, playerValues }) => {
+const ActionButtonComponent = ({id, className, leftPos, topPos, imageSrc, iconName }) => {
 
   const playerContext = useContext(PlayerContext);
   const [isPopUpShown, setIsPopUpShown] = useState(false)
@@ -118,10 +118,10 @@ content={ (10 * costDamageMultiplyer) + " current cost"}
 );
 
 useEffect(()=>{
-  playerContext.getPlayerValue(setPlayerDamage,playerValues.props.location.state.userName,"damage");
-  playerContext.getPlayerValue(setPlayerHealth,playerValues.props.location.state.userName,"health");
-  playerContext.getPlayerValue(setPlayerGold,playerValues.props.location.state.userName,"money");
-  playerContext.getPlayerValue(setPlayerCritChance,playerValues.props.location.state.userName,"cirticalChance");
+  playerContext.getPlayerValue(setPlayerDamage,"damage");
+  playerContext.getPlayerValue(setPlayerHealth,"health");
+  playerContext.getPlayerValue(setPlayerGold,"money");
+  playerContext.getPlayerValue(setPlayerCritChance,"cirticalChance");
   
 })
 

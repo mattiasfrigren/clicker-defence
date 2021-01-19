@@ -6,10 +6,12 @@ const Tile = ({ id, className, leftPos, topPos, imageSrc }) => {
       id={id}
       className={className}
       style={{ left: leftPos + "vw", top: topPos + "vh" }}
+      slot = {"none"}
     >
-<img src ={imageSrc}
+<img src = {imageSrc}
 alt={imageSrc}
 className ={className+"img"}
+slot ={"none"}
 ></img>
     </div>
   );

@@ -7,9 +7,9 @@ import Water from '../../../backend/resoruces/images/tiles/water.png'
 import InGameMenu from '../components/inGameMenu';
 import SpecialEffect from '../components/specialeffect';
 import Sven from '../components/horror';
+import Bomb from '../components/bomb';
 
-
-const GamePlay = (props) => {
+const GamePlay = () => {
   const drawMap = GameMap.map(function (row, index) {
     var i = index;
 
@@ -32,10 +32,11 @@ const GamePlay = (props) => {
     <div>
       {drawMap}
  
-      <Player props={props} />
-      <InGameMenu props={props}/>
+      <Player />
+      <InGameMenu />
      <SpecialEffect/>
      <Sven/>
+     <Bomb/>
     </div>
   );
 };

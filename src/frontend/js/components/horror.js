@@ -5,7 +5,7 @@ import UseDragging from './draggable';
 
 
 const Sven = () => {
-    const [ref, x, y, isDragging] = UseDragging();
+    const [ref, x, y, isDragging,setRefreshPos] = UseDragging(300, 0);
     const [waterTiles, setWaterTiles] =useState([]);
 
     const getWaterTiles = () =>{
@@ -47,7 +47,7 @@ castCorruptTile();
           left: x,
           top: y,
         }}
-      >{isDragging ? "Moveing":" Still"}</div>
+      >{isDragging ? "Moveing":" Sven"}</div>
     );
   
 };

@@ -31,7 +31,7 @@ const playerActionButtonIcons = [
 
 
 
-const InGameMenu = (props) => {
+const InGameMenu = () => {
   const menuButtonsName = ["Start", "Info", "Option", "Save and Exit"];
   const ref = useRef(null);
 
@@ -51,7 +51,6 @@ const InGameMenu = (props) => {
           leftPos={9.9 * (index + handleEnemiesButtonIcons.length )}
           topPos={90}
           imageSrc={icon}
-          playerValues={props}
         ></ActionButtonComponent>
       </div>
     );
@@ -68,7 +67,6 @@ const InGameMenu = (props) => {
           topPos={90}
           imageSrc={icon}
           name={iconName}
-          playerValues={props}
         ></HandleEnemiesButton>
       </div>
     );
@@ -97,7 +95,6 @@ const InGameMenu = (props) => {
           leftPos={60}
           topPos={10 * index}
           name={name}
-          playerValues={props}
         />
       </div>
     );

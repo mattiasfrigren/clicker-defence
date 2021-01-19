@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useRef } from "react";
 import { PlayerContext } from "../context/playerContext";
 import MenuButton from "./menuButtonComp";
 import PopUp from "./popupComp";
@@ -12,7 +12,7 @@ const HandleEnemiesButton = ({
   imageSrc,
   onClick,
   name,
-  playerValues,
+ 
 }) => {
   const playerContext = useContext(PlayerContext);
   const [isPopUpShown, setIsPopUpShown] = useState(false);
@@ -21,22 +21,26 @@ const HandleEnemiesButton = ({
   const [playerHealth, setPlayerHealth] = useState(1);
   const [playerGold, setPlayerGold] = useState(1);
   let [wave, setWave] = useState([]);
-  let [numberOfMinions, setNumberOfMinions] = useState(13);
+  let [numberOfMinions, setNumberOfMinions] = useState(25);
 
-  const addWave = () => {
+
+  const addEnemie = () => {
     setWave((wave) => [...wave, <Minion />]);
     setNumberOfMinions((numberOfMinions = numberOfMinions + 1));
     console.log(wave);
+   
   };
 
-  const nextWave = (e) => {
+  const startWave = (e) => {
     e.target.disabled = true;
     playerContext.setIsGameRunning(true);
     setNumberOfMinions(0);
     setWave([]);
     setTimeout(() => {
       e.target.disabled = false;
-    }, 68000);
+  
+    }, 90000);
+   
   };
 
   const currentWave = wave.map((minion, index) => (
@@ -90,7 +94,7 @@ const HandleEnemiesButton = ({
         <MenuButton
           id={id}
           className={MenuButton.name.toLowerCase()}
-          onClick={nextWave}
+          onClick={startWave}
           leftPos={leftPos}
           topPos={topPos}
           name={name}
@@ -99,15 +103,15 @@ const HandleEnemiesButton = ({
     );
 
   useEffect(() => {
-    if (numberOfMinions < 13) {
-      setTimeout(() => addWave(), 2000);
+    if (numberOfMinions < 25) {
+      setTimeout(() => addEnemie(), 2000);
     }
   }, [numberOfMinions]);
 
   useEffect(() => {
-    playerContext.getPlayerValue(setPlayerDamage, playerValues.props.location.state.userName, "damage");
-    playerContext.getPlayerValue(setPlayerHealth, playerValues.props.location.state.userName, "health");
-    playerContext.getPlayerValue(setPlayerGold, playerValues.props.location.state.userName, "money");
+    playerContext.getPlayerValue(setPlayerDamage,  "damage");
+    playerContext.getPlayerValue(setPlayerHealth,  "health");
+    playerContext.getPlayerValue(setPlayerGold,  "money");
     
   });
 

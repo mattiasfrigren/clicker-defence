@@ -110,6 +110,9 @@ const Minion = () => {
           }
         }
       }
+      if(elem.slot !== null){
+        explodedTile(elem.slot)
+      }
     }
 
     setMoveX((moveX += moveSpeedX));
@@ -118,8 +121,17 @@ const Minion = () => {
       playerContext.setPlayerAttribute({"health":(playerHealth-1)});
       setDead(true);
     }
+
     isMinionDead();
   };
+
+
+  const explodedTile = (slotValue) =>{
+    if(slotValue ==="exploded"){
+    setMinionHealth(minionHealth = minionHealth-1);
+    console.log(" ohhh bomb hurt :" + minionHealth);
+    }
+  }
 
   const isMinionDead =() =>{
     if (minionHealth <= 0) {
@@ -161,10 +173,10 @@ const Minion = () => {
   }, [isDead]);
 
   useEffect(()=>{
-    playerContext.getPlayerValue(setPlayerDamage,"admin","damage");
-    playerContext.getPlayerValue(setPlayerHealth,"admin","health");
-    playerContext.getPlayerValue(setPlayerGold,"admin","money");
-    playerContext.getPlayerValue(setPlayerCritChance,"admin","cirticalChance");
+    playerContext.getPlayerValue(setPlayerDamage,"damage");
+    playerContext.getPlayerValue(setPlayerHealth,"health");
+    playerContext.getPlayerValue(setPlayerGold,"money");
+    playerContext.getPlayerValue(setPlayerCritChance,"cirticalChance");
   });
 
   return !isDead ? (
@@ -172,8 +184,9 @@ const Minion = () => {
       className="minion"
       id="enemie"
       onClick={hitMinion}
+      value = {null}
       style={{ left: moveX - 1.2 + "vw", top: moveY - 3.6 + "vh" }}
-    ></div>
+    >{ minionHealth}</div>
   ) : (
     <></>
   );

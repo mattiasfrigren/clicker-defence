@@ -1,14 +1,13 @@
-import React, { useCallback, useState, useContext  } from 'react';
+import React, {  useState, useContext, useEffect  } from 'react';
 import {useHistory, NavLink} from 'react-router-dom';
-import {PlayerContext} from '../context/playerContext';
+import {AuthContext} from '../context/authenticatContext';
 
-const Login = (props) =>{
+const Login = () =>{
 
-    const playerContext = useContext(PlayerContext);
+    const authContext = useContext(AuthContext);
     const history = useHistory();
     const [user, setUser] = useState({userName: "", passWord: ""});
-
-
+  
     const change = (e) =>{
         setUser({...user, [e.target.name]: e.target.value});
         console.log(user);
@@ -18,14 +17,16 @@ const Login = (props) =>{
     const submit = async (e) =>{
         e.preventDefault();   
      const login ={email:user.userName, password:user.passWord}
-     playerContext.getPlayer(login);
-     if( await playerContext.isSignIn())   {
-        history.push("/gameplay",user);
-     }
-        else{
-        console.log("wrong pw or email")
+     await authContext.getPlayer(login);
+    
+    console.log(authContext.isAuthenticated)
     }
-    }
+
+    useEffect(()=>{
+        if( authContext.isAuthenticated)   {
+            history.push("/gameplay",user);
+         }
+    },[authContext.isAuthenticated])
 
     return (
         <div>

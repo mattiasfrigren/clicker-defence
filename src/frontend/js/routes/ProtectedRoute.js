@@ -6,6 +6,8 @@ const ProtectedRoute = ({component:Component, ...rest}) =>{
 
     const authContext = useContext(AuthContext);
 
+    
+
     return(
         <Route {...rest} render={
         (props) =>{

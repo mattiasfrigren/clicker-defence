@@ -1,7 +1,7 @@
 import React, { useContext , useEffect, useState } from "react";
 import { PlayerContext } from "../context/playerContext";
 
-const Player = (props) => {
+const Player = () => {
   const playerContext = useContext(PlayerContext);
   
   const [playerDamage, setPlayerDamage] = useState(1);
@@ -18,19 +18,17 @@ const Player = (props) => {
   }
  
   useEffect(()=>{
-    console.log(props.props.location.state)
-    playerContext.getPlayerValue(setPlayerDamage,props.props.location.state.userName,"damage");
-    playerContext.getPlayerValue(setPlayerHealth,props.props.location.state.userName,"health");
-    playerContext.getPlayerValue(setPlayerGold,props.props.location.state.userName,"money");
-    playerContext.getPlayerValue(setPlayerCritChance,props.props.location.state.userName,"cirticalChance");
-    playerContext.getPlayerValue(setPlayerIncome,props.props.location.state.userName,"income");
+    playerContext.getPlayerValue(setPlayerDamage, "damage");
+    playerContext.getPlayerValue(setPlayerHealth,"health");
+    playerContext.getPlayerValue(setPlayerGold,"money");
+    playerContext.getPlayerValue(setPlayerCritChance,"cirticalChance");
+    playerContext.getPlayerValue(setPlayerIncome,"income");
     setIsGameRunning(playerContext.isGameRunning);
   })
 
   useEffect (() => {
     if(isGameRunning){
-    setTimeout(() => 
-      getIncome(),2000);
+   
     }   
 });
 
