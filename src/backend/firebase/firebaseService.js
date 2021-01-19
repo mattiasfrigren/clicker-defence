@@ -33,6 +33,10 @@ const create = async (data) => {
   }
 };
 
+const updateItemValues =( uid,item ,data) =>{
+  return DB.ref("players/" +uid).child(item).update(data);
+};
+
 const update = (uid, data) => {
   return DB.ref("players/" + uid).update(data);
 };
@@ -43,4 +47,5 @@ export default {
   update,
   getPlayerAttribute,
   getCurrentPlayer,
+  updateItemValues,
 };

@@ -11,7 +11,7 @@ const Minion = () => {
   let [minionHealth, setMinionHealth] = useState(10);
   let [isDead, setDead] = useState(false);
   let [coinWorth, setCoinWorth] = useState(1);
-
+  const [bombDamage, setBombDamage] = useState(1);
   const [playerDamage, setPlayerDamage] = useState(1);
   const [playerHealth, setPlayerHealth] = useState(1);
   const [playerGold, setPlayerGold] = useState(1);
@@ -128,7 +128,7 @@ const Minion = () => {
 
   const explodedTile = (slotValue) =>{
     if(slotValue ==="exploded"){
-    setMinionHealth(minionHealth = minionHealth-1);
+    setMinionHealth(minionHealth = minionHealth-bombDamage);
     console.log(" ohhh bomb hurt :" + minionHealth);
     }
   }
@@ -177,6 +177,7 @@ const Minion = () => {
     playerContext.getPlayerValue(setPlayerHealth,"health");
     playerContext.getPlayerValue(setPlayerGold,"money");
     playerContext.getPlayerValue(setPlayerCritChance,"cirticalChance");
+    playerContext.getPlayerValue(setBombDamage, "bombValues/damage");
   });
 
   return !isDead ? (

@@ -1,10 +1,11 @@
-import {useState,useRef,useEffect} from 'react'
+import {useState,useRef,useEffect, useContext} from 'react'
+import {AuthContext} from '../context/authenticatContext';
 
 function UseDragging(X,Y) {
     const [isDragging, setIsDragging] = useState(false);
     const [pos, setPos] = useState({ x: X, y: Y });
     const [refreshPos, setRefreshPos] = useState(false);
-
+    const authContext = useContext(AuthContext);
     const ref = useRef(null);
   
 
@@ -45,11 +46,18 @@ function UseDragging(X,Y) {
   
     // When the element mounts, attach an mousedown listener
     useEffect(() => {
-      ref.current.addEventListener("mousedown", onMouseDown);
   
+      
+      ref.current.addEventListener("mousedown", onMouseDown);
+ {/** 
       return () => {
-        ref.current.removeEventListener("mousedown", onMouseDown);
+      
+        ref.current.removeEventListener("mousedown", onMouseDown); 
+    executes error on log out
+    
+        
       };
+    */}
     }, [ref.current]);
   
     // Everytime the isDragging state changes, assign or remove

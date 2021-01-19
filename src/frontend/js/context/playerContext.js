@@ -23,6 +23,12 @@ export default ({ children }) => {
       newAttribute
     );
   }
+  function setPlayerItemAttribute( itemToUpdate,newAttribute){
+    dataService.updateItemValues(
+      dataService.firebaseAuth().currentUser.uid,itemToUpdate,
+      newAttribute
+    );
+  }
 
   return (
     <div>
@@ -40,6 +46,7 @@ export default ({ children }) => {
           setCriticalChance,
           isGameRunning,
           setIsGameRunning,
+          setPlayerItemAttribute,
         }}
       >
         {children}

@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import MenuButton from "./menuButtonComp";
 import HandleEnemiesButton from "./handleEnemiesButtons";
 import ActionButtonComponent from './actionbuttonComp';
@@ -12,6 +12,7 @@ import Attack from "../../../backend/resoruces/images/icons/attack.png";
 import Random from "../../../backend/resoruces/images/icons/random.png";
 import Bomb from "../../../backend/resoruces/images/icons/bomb.png";
 import Heart from "../../../backend/resoruces/images/icons/heart.png";
+import {AuthContext} from '../context/authenticatContext';
 
 const handleEnemiesButtonIcons = [
   [Lightning,"Lightning"],
@@ -34,6 +35,11 @@ const playerActionButtonIcons = [
 const InGameMenu = () => {
   const menuButtonsName = ["Start", "Info", "Option", "Save and Exit"];
   const ref = useRef(null);
+  const authContext = useContext(AuthContext);
+
+  const logOut = () =>{
+    authContext.signOut();
+  }
 
   const start = () => {
     console.log(ref.current);
@@ -79,7 +85,7 @@ const InGameMenu = () => {
           key={Math.random() * 100000000}
           id={name + index}
           className={MenuButton.name.toLowerCase()}
-          onClick={start}
+          onClick={(name==="Save and Exit") ? logOut :start}
           leftPos={60}
           topPos={10 * index}
           name={name}

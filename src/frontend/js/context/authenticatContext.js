@@ -17,6 +17,12 @@ export default ({ children }) => {
       health: 20,
       income: 0,
       money: 20,
+      bombValues :
+      { 
+        damage : 2,
+        damageMultiplyer: 2,
+        costMultiplyer :1.5,
+      }
     };
     dataService.create(postTemplate);
   }
@@ -45,6 +51,12 @@ export default ({ children }) => {
   }
   else{return false}
   }
+  
+  function signOut(){
+      dataService.firebaseAuth().signOut();
+      setAuthenticated(false);
+    
+  }
 
   return (
     <div>
@@ -55,6 +67,7 @@ export default ({ children }) => {
           createNewPlayer,
           getPlayer,
           isSignIn,
+          signOut,
         }}
       >
         {children}

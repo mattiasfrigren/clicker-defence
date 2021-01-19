@@ -16,6 +16,10 @@ const HandleEnemiesButton = ({
 }) => {
   const playerContext = useContext(PlayerContext);
   const [isPopUpShown, setIsPopUpShown] = useState(false);
+  const [bombDamage, setBombDamage] = useState(1);
+  const [bombDamageMultiplyer, setBombDamageMultiplyer] = useState(1);
+  const [bombCost, setBombCost] = useState(30);
+  const [bombCostMultiplyer, setBombCostMultiplyer] = useState(1);
 
   const [playerDamage, setPlayerDamage] = useState(1);
   const [playerHealth, setPlayerHealth] = useState(1);
@@ -59,6 +63,17 @@ const HandleEnemiesButton = ({
     }
   };
 
+  const upgradeBomb = () =>{
+    if(playerGold >= (bombCost *bombCostMultiplyer)){
+      playerContext.setPlayerAttribute({ money: playerGold - (bombCost * bombCostMultiplyer)});
+      playerContext.setPlayerItemAttribute("bombValues",{damage : (bombDamage * bombDamageMultiplyer)})
+      playerContext.setPlayerItemAttribute("bombValues",{costMultiplyer : (bombCostMultiplyer + 1)})
+    }
+    else{
+      console.log("no gold for it")
+    }
+  }
+
   const renderButton =
     className !== "menubutton" ? (
       <div>
@@ -67,11 +82,7 @@ const HandleEnemiesButton = ({
           key={Math.random() * 100000000}
           className={className}
           onClick={
-            name !== "Lightning"
-              ? () => {
-                  console.log("done");
-                }
-              : castThunder
+            (name === "Lightning") ?  castThunder : (name ==="Bomb") ? upgradeBomb : () =>console.log("done")
           }
           style={{ left: leftPos + "vw", top: topPos + "vh" }}
           onMouseEnter={() => setIsPopUpShown(true)}
@@ -83,7 +94,7 @@ const HandleEnemiesButton = ({
           <PopUp
             key={Math.random() * 100000000}
             id={id}
-            content={10 + " current cost"}
+            content= {(name ==="Bomb") ? "current cost: " +(bombCost *bombCostMultiplyer) + "damage: " +bombDamage: "to be more info"}
           />
         ) : (
           <></>
@@ -112,6 +123,10 @@ const HandleEnemiesButton = ({
     playerContext.getPlayerValue(setPlayerDamage,  "damage");
     playerContext.getPlayerValue(setPlayerHealth,  "health");
     playerContext.getPlayerValue(setPlayerGold,  "money");
+    playerContext.getPlayerValue(setBombDamage,  "bombValues/damage");
+    playerContext.getPlayerValue(setBombDamageMultiplyer,  "bombValues/damageMultiplyer");
+    playerContext.getPlayerValue(setBombCostMultiplyer,  "bombValues/costMultiplyer");
+   
     
   });
 

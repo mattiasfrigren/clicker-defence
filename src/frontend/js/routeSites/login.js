@@ -11,7 +11,6 @@ const Login = () =>{
     const change = (e) =>{
         setUser({...user, [e.target.name]: e.target.value});
         console.log(user);
-       
     };
 
     const submit = async (e) =>{
@@ -24,7 +23,7 @@ const Login = () =>{
 
     useEffect(()=>{
         if( authContext.isAuthenticated)   {
-            history.push("/gameplay",user);
+            history.push("/gameplay");
          }
     },[authContext.isAuthenticated])
 

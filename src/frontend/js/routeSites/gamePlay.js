@@ -31,12 +31,12 @@ const GamePlay = () => {
   return (
     <div>
       {drawMap}
- 
+      <Sven/>
+     <Bomb/>
       <Player />
       <InGameMenu />
      <SpecialEffect/>
-     <Sven/>
-     <Bomb/>
+     
     </div>
   );
 };

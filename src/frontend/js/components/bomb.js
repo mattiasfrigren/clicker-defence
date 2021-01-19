@@ -4,7 +4,7 @@ import blackbomb from "../../../backend/resoruces/images/effects/bomb.png";
 import explosion from "../../../backend/resoruces/images/effects/explosion.gif";
 
 const Bomb = () => {
-  let [ref, x, y, isDragging, setRefreshPos] = UseDragging(360, 0);
+  const [ref, x, y, isDragging, setRefreshPos] = UseDragging(360, 0);
   const [text, setText] = useState("Bomb");
   let [seconds, setSeconds] = useState(3);
   const [isExploding, setIsExploding] = useState(false);
@@ -41,7 +41,7 @@ const Bomb = () => {
         bombCounter = bombCounter - 1;
         if (bombCounter <= 0) {
           clearInterval(timer);
-          setText("");
+          setText("Bomb");
           setReadyCounter(true);
         }
       }, 1000);
@@ -93,6 +93,8 @@ const Bomb = () => {
       resetElements();
     }
   }, [isExploding]);
+
+
 
   return (
     <div
