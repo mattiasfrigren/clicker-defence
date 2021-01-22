@@ -8,29 +8,23 @@ const Player = () => {
   const [playerHealth, setPlayerHealth] = useState(1);
   const [playerGold, setPlayerGold] = useState(1);
   const [playerCritChance, setPlayerCritChance] = useState(0);
-  const [playerIncome, setPlayerIncome] = useState(0);
   const [isGameRunning, setIsGameRunning] = useState(false);
 
-
-  const getIncome = () =>{
-    playerContext.setPlayerAttribute({"money":(playerGold +playerIncome)})
-    
-  }
  
   useEffect(()=>{
     playerContext.getPlayerValue(setPlayerDamage, "damage");
     playerContext.getPlayerValue(setPlayerHealth,"health");
     playerContext.getPlayerValue(setPlayerGold,"money");
-    playerContext.getPlayerValue(setPlayerCritChance,"cirticalChance");
-    playerContext.getPlayerValue(setPlayerIncome,"income");
+    playerContext.getPlayerValue(setPlayerCritChance,"criticalChance");
     setIsGameRunning(playerContext.isGameRunning);
   })
 
   useEffect (() => {
-    if(isGameRunning){
-   
-    }   
-});
+   if(playerHealth <=0){
+     playerContext.setIsGameOver(true);
+   }
+
+},[playerHealth]);
 
   return (
     <div id="playerValues">

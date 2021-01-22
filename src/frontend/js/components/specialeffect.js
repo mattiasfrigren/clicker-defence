@@ -1,11 +1,13 @@
 import React, { useContext,  useEffect, useState } from "react";
 import { PlayerContext } from "../context/playerContext";
 import Thunder from '../../../backend/resoruces/images/effects/Thunder.gif';
+import demonEffect from '../../../backend/resoruces/images/effects/demonEffect.gif';
 
 const SpecialEffect = () =>{
 
     const playerContext = useContext(PlayerContext);
-    const [useLighting, setUseLightning] = useState(false)
+    const [useLighting, setUseLightning] = useState(false);
+    const [useCorruption, setUseCorruption] = useState(false);
 
     const lightningEffect = useLighting ? (
         <img src={Thunder}
@@ -14,6 +16,29 @@ const SpecialEffect = () =>{
         >
         </img>
     ) :(<></>);
+
+    const corruptionEffect = useCorruption ? (
+        <div
+        className={"specialEffects"}
+        id={"demonEffects"}
+        >
+        <img src={demonEffect}
+        alt={demonEffect}
+        id={"demonEffect"}
+        >
+        </img>
+        </div>
+    ) 
+    :(<></>)
+
+    useEffect(()=>{
+        if(playerContext.corruption){
+            setUseCorruption(true)
+            setTimeout(()=>{
+                setUseCorruption(false);
+            },3000)
+        }
+    },[playerContext.corruption])
 
     useEffect(()=>{
        if(playerContext.isThunder){
@@ -27,6 +52,7 @@ const SpecialEffect = () =>{
     return(
         <div>
             {lightningEffect}
+            {corruptionEffect}
         </div>
     );
 }

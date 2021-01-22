@@ -13,5 +13,5 @@ const PopUp = ({id, content}) => {
     </div>
   );
 };
-{/** gör om så att detta kan lösas i själva buttonComp. bättre att man har en hover effect där */}
+
 export default PopUp;

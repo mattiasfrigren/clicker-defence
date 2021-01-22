@@ -55,6 +55,7 @@ h3{
   background-size: cover;
   animation: playRun 1.5s steps(6) infinite;
   display: inline-block;
+  
 }
 #enemie:active {
   background: url("../../backend/resoruces/images/Character2/Take Hit.png") left
@@ -168,6 +169,16 @@ font-size: 120%;
     background-position: 62.5vw;
   }
 }
+#resetButton{
+  background-color: greenyellow ;
+  position: relative;
+  border-radius: 15%;
+  font-size: 120%;
+  width:15vw;
+  height: 7.5vh;
+  left: 41%;
+  top: 50%;
+}
 
 
 /*//////////*/
@@ -184,6 +195,25 @@ font-size: 120%;
   opacity: 0.4;
 }
 
+#gameoverDiv{
+  position: absolute;
+  display: block;
+  background-color: rgb(23, 48, 19);
+  opacity: 0.9;
+  top: 5%;
+  left: 10%;
+  height: 80%;
+  width: 80%;
+}
+#gameoverTag{
+  position: relative;
+  top: 35%;
+  text-align: center;
+  font-size: 200%;
+  font-weight: bold;
+  
+}
+
 
 /*//////////*/
 /*Effects*/
@@ -198,4 +228,24 @@ font-size: 120%;
   top: 0;
   left: 0;
   opacity: 0.4;
+}
+#demonEffects {
+  background-color: rgb(78, 6, 78); 
+  opacity: 0.6;
+}
+#demonEffect{
+  position: absolute;
+  display: block;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  animation: slide-left 0.5s;
+}
+@keyframes slide-left {
+  from{
+    left: 100%;
+  }
+  to{
+left: 0;
+  }
 }

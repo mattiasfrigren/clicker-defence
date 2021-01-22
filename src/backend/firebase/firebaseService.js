@@ -41,7 +41,40 @@ const update = (uid, data) => {
   return DB.ref("players/" + uid).update(data);
 };
 
+const resetValues =(uid) =>{
+  return DB.ref("players/" + uid).update({
+    criticalChance: 0,
+    damage: 1,
+    health: 20,
+    money: 20,
+    lightningStrikes :5,
+    upgradeValues:{
+      healthMultiplyer:1.5,
+      critMultiplyer:2,
+      dmgMultiplyer :1.5,
+    },
+    bombValues :
+    { 
+      damage : 2,
+      damageMultiplyer: 2,
+      costMultiplyer :0.5,
+    },
+    svenValues :{
+      damage : 2,
+      damageMultiplyer: 2,
+      costMultiplyer: 0.5
+    },
+    minionValues:{
+      coinWorthCostMultiplyer: 1,
+      level: 1,
+      coinWorthMultiplyer: 1,
+    }
+  }
+  )
+}
+
 export default {
+  resetValues,
   firebaseAuth,
   create,
   update,

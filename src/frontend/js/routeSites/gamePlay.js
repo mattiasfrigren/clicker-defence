@@ -8,6 +8,7 @@ import InGameMenu from '../components/inGameMenu';
 import SpecialEffect from '../components/specialeffect';
 import Sven from '../components/horror';
 import Bomb from '../components/bomb';
+import GameOver from '../components/gameOver';
 
 const GamePlay = () => {
   const drawMap = GameMap.map(function (row, index) {
@@ -36,7 +37,7 @@ const GamePlay = () => {
       <Player />
       <InGameMenu />
      <SpecialEffect/>
-     
+     <GameOver/>
     </div>
   );
 };

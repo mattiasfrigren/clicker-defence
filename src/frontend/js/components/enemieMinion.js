@@ -1,21 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
 import { PlayerContext } from "../context/playerContext";
 
-const Minion = () => {
+const Minion = (level) => {
   const playerContext = useContext(PlayerContext);
 
   let [moveX, setMoveX] = useState(0);
   let [moveY, setMoveY] = useState(0);
   let [moveSpeedY, setMoveSpeedY] = useState(0.5);
   let [moveSpeedX, setMoveSpeedX] = useState(0);
-  let [minionHealth, setMinionHealth] = useState(10);
+  let [minionHealth, setMinionHealth] = useState(level.level*10);
   let [isDead, setDead] = useState(false);
   let [coinWorth, setCoinWorth] = useState(1);
+
   const [bombDamage, setBombDamage] = useState(1);
+  const [corruptionDamage, setCorruptionDamage] = useState(1);
   const [playerDamage, setPlayerDamage] = useState(1);
   const [playerHealth, setPlayerHealth] = useState(1);
   const [playerGold, setPlayerGold] = useState(1);
   const [playerCritChance, setPlayerCritChance] = useState(0);
+  let timer = null;
+
 
   const currentElemDir = () => {
     if (moveSpeedY === 0.5) {
@@ -135,7 +139,7 @@ const Minion = () => {
 
   const isMinionDead =() =>{
     if (minionHealth <= 0) {
-      playerContext.setPlayerAttribute({"money":(playerGold +coinWorth)});
+      playerContext.setPlayerAttribute({money: (playerGold +(level.level +coinWorth))});
       console.log(playerGold);
       setDead(true);
     }
@@ -154,9 +158,27 @@ const Minion = () => {
   }
   };
 
+  const corruptMinion = () =>{
+    var damageInterval =3;
+    timer = setInterval(()=>{
+      damageInterval = damageInterval -1;
+      setMinionHealth(minionHealth= (minionHealth -corruptionDamage));
+      if(damageInterval <=0){
+        clearInterval(timer);
+      }
+    },1000)
+  }
+
+  useEffect(()=>{
+    if(playerContext.corruption){
+      corruptMinion();
+    }
+
+  },[playerContext.corruption])
+
   useEffect(()=>{
     if(playerContext.isThunder){
-      setMinionHealth(minionHealth = minionHealth -5);
+      setMinionHealth(0);
       playerContext.setIsThunder(false);
     }
 
@@ -176,16 +198,21 @@ const Minion = () => {
     playerContext.getPlayerValue(setPlayerDamage,"damage");
     playerContext.getPlayerValue(setPlayerHealth,"health");
     playerContext.getPlayerValue(setPlayerGold,"money");
-    playerContext.getPlayerValue(setPlayerCritChance,"cirticalChance");
+    playerContext.getPlayerValue(setPlayerCritChance,"criticalChance");
     playerContext.getPlayerValue(setBombDamage, "bombValues/damage");
+    playerContext.getPlayerValue(setCorruptionDamage, "svenValues/damage");
+    
+    playerContext.getPlayerValue(setCoinWorth, "minionValues/coinWorthMultiplyer");
+   
+
   });
 
   return !isDead ? (
     <div
+      slot ={""}
       className="minion"
       id="enemie"
       onClick={hitMinion}
-      value = {null}
       style={{ left: moveX - 1.2 + "vw", top: moveY - 3.6 + "vh" }}
     >{ minionHealth}</div>
   ) : (

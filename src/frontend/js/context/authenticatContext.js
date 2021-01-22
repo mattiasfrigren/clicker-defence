@@ -15,13 +15,28 @@ export default ({ children }) => {
       criticalChance: 0,
       damage: 1,
       health: 20,
-      income: 0,
       money: 20,
+      lightningStrikes :5,
+      upgradeValues:{
+        healthMultiplyer:1.5,
+        critMultiplyer:2,
+        dmgMultiplyer :1.5,
+      },
       bombValues :
       { 
         damage : 2,
         damageMultiplyer: 2,
-        costMultiplyer :1.5,
+        costMultiplyer :0.5,
+      },
+      svenValues :{
+        damage : 2,
+        damageMultiplyer: 2,
+        costMultiplyer: 0.5
+      },
+      minionValues:{
+        coinWorthCostMultiplyer: 1,
+        level: 1,
+        coinWorthMultiplyer: 1,
       }
     };
     dataService.create(postTemplate);

@@ -8,6 +8,8 @@ export default ({ children }) => {
   const [isThunder, setIsThunder] = useState(false);
   const [criticalChance, setCriticalChance] = useState(0);
   const [isGameRunning, setIsGameRunning] = useState(false);
+  const [corruption, setCorruption] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   function getPlayerValue(setAttribute, attribute) {
     dataService
@@ -29,6 +31,9 @@ export default ({ children }) => {
       newAttribute
     );
   }
+  function resetPlayerValues(){
+    dataService.resetValues(dataService.firebaseAuth().currentUser.uid);
+  }
 
   return (
     <div>
@@ -47,6 +52,11 @@ export default ({ children }) => {
           isGameRunning,
           setIsGameRunning,
           setPlayerItemAttribute,
+          corruption,
+          setCorruption,
+          isGameOver,
+          setIsGameOver,
+          resetPlayerValues,
         }}
       >
         {children}
