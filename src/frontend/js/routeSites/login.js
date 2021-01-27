@@ -16,8 +16,8 @@ const Login = () =>{
     const submit = async (e) =>{
         e.preventDefault();   
      const login ={email:user.userName, password:user.passWord}
-     await authContext.getPlayer(login);
-    
+    await authContext.getPlayer(login);
+  
     console.log(authContext.isAuthenticated)
     }
 

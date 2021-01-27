@@ -9,7 +9,9 @@ export default ({ children }) => {
   const [criticalChance, setCriticalChance] = useState(0);
   const [isGameRunning, setIsGameRunning] = useState(false);
   const [corruption, setCorruption] = useState(false);
+  const [isEarthQuake, setIsEarthQuake] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
 
   function getPlayerValue(setAttribute, attribute) {
     dataService
@@ -57,6 +59,10 @@ export default ({ children }) => {
           isGameOver,
           setIsGameOver,
           resetPlayerValues,
+          isEarthQuake,
+          setIsEarthQuake,
+          showInfo,
+          setShowInfo,
         }}
       >
         {children}

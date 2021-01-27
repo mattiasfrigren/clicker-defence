@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useState } from "react";
 import MenuButton from "./menuButtonComp";
 import HandleEnemiesButton from "./handleEnemiesButtons";
 import ActionButtonComponent from './actionbuttonComp';
@@ -11,14 +11,17 @@ import Scary from "../../../backend/resoruces/images/icons/scary.png";
 import Attack from "../../../backend/resoruces/images/icons/attack.png";
 import Random from "../../../backend/resoruces/images/icons/random.png";
 import Bomb from "../../../backend/resoruces/images/icons/bomb.png";
-import Heart from "../../../backend/resoruces/images/icons/heart.png";
+import Skull from "../../../backend/resoruces/images/icons/skull.png";
 import {AuthContext} from '../context/authenticatContext';
+import { PlayerContext } from "../context/playerContext";
+import InfoPage from './information';
 
 const handleEnemiesButtonIcons = [
   [Lightning,"Lightning"],
   [Scary,"Scary"],
   [Random,"Random"],
-  [Bomb,"Bomb"]
+  [Bomb,"Bomb"],
+  [Skull,"Skull"]
 ];
 
 const playerActionButtonIcons = [
@@ -27,7 +30,6 @@ const playerActionButtonIcons = [
   [Healing,"Healing"],
   [Moneybag,"MoneyBag"],
   [Randompotion,"Randompotion"],
-  [Heart,"Heart"]
 ];
 
 
@@ -36,6 +38,7 @@ const InGameMenu = () => {
   const menuButtonsName = ["Start", "Info", "Option", "Save and Exit"];
   const ref = useRef(null);
   const authContext = useContext(AuthContext);
+  const [showInfo, setShowInfo] = useState(false);
 
   const logOut = () =>{
     authContext.signOut();
@@ -45,6 +48,10 @@ const InGameMenu = () => {
     console.log(ref.current);
     
   };
+
+  const info = () =>{
+     setShowInfo(!showInfo);
+  }
 
   const playerActionButtons = playerActionButtonIcons.map(function ([icon,iconName], index) {
     return (
@@ -85,7 +92,7 @@ const InGameMenu = () => {
           key={Math.random() * 100000000}
           id={name + index}
           className={MenuButton.name.toLowerCase()}
-          onClick={(name==="Save and Exit") ? logOut :start}
+          onClick={(name==="Save and Exit") ? logOut : (name==="Info")? info : start}
           leftPos={60}
           topPos={10 * index}
           name={name}
@@ -111,10 +118,11 @@ const InGameMenu = () => {
     <div id="inGameMenu">
       
       {mapMenuButtons}
+     
 
       <div id={"menuImgHolder"} className={"menubuttondiv"}></div>
     </div>
-    
+    {showInfo ? <InfoPage/> :null} 
     {handleEnemiesActionButtons}
       {playerActionButtons}
     </div>

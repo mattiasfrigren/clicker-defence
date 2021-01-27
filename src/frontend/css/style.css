@@ -214,6 +214,41 @@ font-size: 120%;
   
 }
 
+#infoDiv{
+  position: absolute;
+  display: block;
+  background-color: rgb(23, 48, 19);
+  opacity: 0.9;
+  top: 20%;
+  left: 30%;
+  height: 45%;
+  width: 40%;
+}
+.infoButton{
+  position: relative;
+  left: 25%;
+  top: 0%;
+  background-color: greenyellow ;
+  border-radius: 15%;
+  font-size: 120%;
+  width:10vw;
+  height: 5.5vh;
+ 
+}
+.infoTag{
+  color: aliceblue;
+  text-align: center;
+  position: relative;
+  top: 10%;
+  font-size: 85%;
+}
+.infoIcon{
+  position: relative;
+  top: 3vh;
+  left: 42%;
+  width: 6vw;
+}
+
 
 /*//////////*/
 /*Effects*/

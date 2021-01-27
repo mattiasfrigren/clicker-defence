@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { PlayerContext } from "../context/playerContext";
 
+
 const Minion = (level) => {
   const playerContext = useContext(PlayerContext);
 
@@ -169,12 +170,22 @@ const Minion = (level) => {
     },1000)
   }
 
+  const earthQuake = () =>{
+    
+    setMinionHealth(minionHealth = (minionHealth - Math.floor((level.level*10)/2)));
+  }
+
   useEffect(()=>{
     if(playerContext.corruption){
       corruptMinion();
     }
-
   },[playerContext.corruption])
+
+  useEffect(()=>{
+    if(playerContext.isEarthQuake){
+      earthQuake();
+    }
+  },[playerContext.isEarthQuake])
 
   useEffect(()=>{
     if(playerContext.isThunder){
@@ -207,8 +218,9 @@ const Minion = (level) => {
 
   });
 
-  return !isDead ? (
-    <div
+  return !isDead ? ( 
+  
+      <div
       slot ={""}
       className="minion"
       id="enemie"
