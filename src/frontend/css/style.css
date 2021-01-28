@@ -264,6 +264,12 @@ font-size: 120%;
   left: 0;
   opacity: 0.4;
 }
+#earthquake{
+  opacity: 0.7;
+  height: 100%;
+  width: 100%;
+}
+
 #demonEffects {
   background-color: rgb(78, 6, 78); 
   opacity: 0.6;

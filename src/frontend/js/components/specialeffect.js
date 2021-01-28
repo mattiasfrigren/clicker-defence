@@ -1,14 +1,16 @@
 import React, { useContext,  useEffect, useState } from "react";
 import { PlayerContext } from "../context/playerContext";
+import EarthQuake from './earthquake';
 import Thunder from '../../../backend/resoruces/images/effects/Thunder.gif';
 import demonEffect from '../../../backend/resoruces/images/effects/demonEffect.gif';
+import rocks from '../../../backend/resoruces/images/effects/rocks.png';
 
 const SpecialEffect = () =>{
 
     const playerContext = useContext(PlayerContext);
     const [useLighting, setUseLightning] = useState(false);
     const [useCorruption, setUseCorruption] = useState(false);
-
+    
     const lightningEffect = useLighting ? (
         <img src={Thunder}
         alt={Thunder}
@@ -31,6 +33,7 @@ const SpecialEffect = () =>{
     ) 
     :(<></>)
 
+
     useEffect(()=>{
         if(playerContext.corruption){
             setUseCorruption(true)
@@ -49,8 +52,11 @@ const SpecialEffect = () =>{
        }
     },[playerContext.isThunder])
 
+
     return(
         <div>
+           {playerContext.isEarthQuake ? <EarthQuake children ={<img id="earthquake" src={rocks}></img>} /> :<></> } 
+         
             {lightningEffect}
             {corruptionEffect}
         </div>

@@ -9,7 +9,6 @@ import SpecialEffect from '../components/specialeffect';
 import Sven from '../components/horror';
 import Bomb from '../components/bomb';
 import GameOver from '../components/gameOver';
-import EarthQuake from '../components/earthquake';
 
 const GamePlay = () => {
   const drawMap = GameMap.map(function (row, index) {
@@ -35,7 +34,8 @@ const GamePlay = () => {
 
   return (
     <div>
-      <EarthQuake children={drawMap}/>
+      {drawMap}
+      
       <Sven/>
      <Bomb/>
       <Player />

@@ -13,7 +13,6 @@ import Random from "../../../backend/resoruces/images/icons/random.png";
 import Bomb from "../../../backend/resoruces/images/icons/bomb.png";
 import Skull from "../../../backend/resoruces/images/icons/skull.png";
 import {AuthContext} from '../context/authenticatContext';
-import { PlayerContext } from "../context/playerContext";
 import InfoPage from './information';
 
 const handleEnemiesButtonIcons = [
@@ -36,7 +35,7 @@ const playerActionButtonIcons = [
 
 const InGameMenu = () => {
   const menuButtonsName = ["Start", "Info", "Option", "Save and Exit"];
-  const ref = useRef(null);
+ 
   const authContext = useContext(AuthContext);
   const [showInfo, setShowInfo] = useState(false);
 
@@ -45,7 +44,7 @@ const InGameMenu = () => {
   }
 
   const start = () => {
-    console.log(ref.current);
+
     
   };
 
@@ -118,11 +117,11 @@ const InGameMenu = () => {
     <div id="inGameMenu">
       
       {mapMenuButtons}
-     
+    
 
       <div id={"menuImgHolder"} className={"menubuttondiv"}></div>
     </div>
-    {showInfo ? <InfoPage/> :null} 
+    {showInfo ?  <InfoPage/> :null}
     {handleEnemiesActionButtons}
       {playerActionButtons}
     </div>

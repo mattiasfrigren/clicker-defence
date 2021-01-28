@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react'
+import React, {useState, useContext, useEffect, useRef} from 'react'
 import {PlayerContext} from '../context/playerContext';
 import {infoArray} from '../../../backend/commonutils/Utils';
 
@@ -19,15 +19,16 @@ const InfoPage = () =>{
     }
     useEffect(()=>{
         setCurrentpage(infoArray[pageNumber]);
+      
     },[pageNumber])
 
-    return( 
-        <div id="infoDiv">
+    return( !playerContext.isGameRunning ?
+        <div id="infoDiv" >
             {currentPage}
             <button className="infoButton" onClick={prev} disabled={pageNumber===0 ?true :false}> Prev</button>
             <button className="infoButton" onClick={next} disabled={pageNumber===infoArray.length-1 ?true :false}> Next</button>
         </div>
-        
+        :<></>
     ) 
 
 }

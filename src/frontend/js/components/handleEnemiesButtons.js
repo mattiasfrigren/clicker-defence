@@ -59,6 +59,7 @@ const HandleEnemiesButton = ({
     setWave([]);
     setTimeout(() => {
       e.target.disabled = false;
+      playerContext.setIsGameRunning(false);
       playerContext.setPlayerItemAttribute("minionValues",{level : (currentLevel+1)});
     }, 88000);
    
@@ -118,7 +119,7 @@ setTimeout(()=>{
       setIsEarthQuakeReady(true);
     }
   },1000);
-},1000);
+},2000);
   }
   else{console.log("not ready")}
   }
