@@ -28,17 +28,26 @@ const Login = () =>{
     },[authContext.isAuthenticated])
 
     return (
-        <div>
+        <div className="startDiv">
+        <div className ="startcontainer">
+            <div className="navbar">
+                
+        <NavLink className="startlinks" to="/register">
+          To Register
+        </NavLink></div>
+        <h1>Clicker Defence</h1>
         <h1>Login</h1>
         <form>
+            <label for="email">Email</label>
             <input
             name="userName"
-            placeholder="UserName"
+            placeholder="Email"
             value={user.userName}
             onChange={change}
             >
             </input>
 
+            <label for ="password">Password</label>
             <input
             type="password"
             name="passWord"
@@ -48,17 +57,16 @@ const Login = () =>{
             >
             </input>
 
-            
         </form>
         <button
+        className="submit"
             onClick ={submit}
             type="submit"
             >
-
+                Login
             </button>
-        <NavLink to="/register">
-            Register
-        </NavLink>
+        
+        </div>
         </div>
     )
 };

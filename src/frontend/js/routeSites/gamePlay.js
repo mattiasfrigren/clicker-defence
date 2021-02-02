@@ -9,7 +9,7 @@ import SpecialEffect from '../components/specialeffect';
 import Sven from '../components/horror';
 import Bomb from '../components/bomb';
 import GameOver from '../components/gameOver';
-
+import Tree from '../../../backend/resoruces/images/tiles/tree.png'
 const GamePlay = () => {
   const drawMap = GameMap.map(function (row, index) {
     var i = index;
@@ -19,11 +19,11 @@ const GamePlay = () => {
         
         <Tile
           id={i * 3 + ":" + index * 1.5}
-          className={cell === 1 ? "water" : "grass"}
+          className={cell === 1 ? "water" : (cell===0) ? "grass": "tree"}
           leftPos={1.5 * index}
           topPos={3 * i}
           key={Math.random() * 100000000}
-          imageSrc={cell === 0 ? Grass:Water}
+          imageSrc={cell === 0 ? Grass: (cell===1)? Water : Tree}
         />
        
       );

@@ -28,10 +28,10 @@ const Player = () => {
 
   return (
     <div id="playerValues">
-      <p>{playerCritChance} criticalChance</p>
-      <p>{playerHealth} health</p>
-      <p>{playerGold} pengar</p>
-       <p>{playerDamage} damage</p>
+      <p className="playertag">CritChance: {playerCritChance} </p>
+      <p className="playertag">Health: {playerHealth} </p>
+      <p className="playertag">Gold: {playerGold} </p>
+      <p className="playertag">Damage: {playerDamage} </p>
     </div>
   );
 };

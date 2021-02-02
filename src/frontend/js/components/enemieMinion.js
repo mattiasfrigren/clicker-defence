@@ -12,6 +12,7 @@ const Minion = (level) => {
   let [minionHealth, setMinionHealth] = useState(level.level*10);
   let [isDead, setDead] = useState(false);
   let [coinWorth, setCoinWorth] = useState(1);
+  let [deathAnimation, setDeathAnimation] = useState(false);
 
   const [bombDamage, setBombDamage] = useState(1);
   const [corruptionDamage, setCorruptionDamage] = useState(1);
@@ -143,6 +144,7 @@ const Minion = (level) => {
       playerContext.setPlayerAttribute({money: (playerGold +(level.level +coinWorth))});
       console.log(playerGold);
       setDead(true);
+      playDeathAnimation();
     }
   }
 
@@ -156,8 +158,14 @@ const Minion = (level) => {
     }
     else{ 
     setMinionHealth((minionHealth = minionHealth - playerDamage));
+    
   }
   };
+
+  const playDeathAnimation = () =>{
+    setDeathAnimation(true);
+    setTimeout(()=> setDeathAnimation(false),1000);
+  }
 
   const corruptMinion = () =>{
     var damageInterval =3;
@@ -218,7 +226,7 @@ const Minion = (level) => {
 
   });
 
-  return !isDead ? ( 
+  return (!isDead && !deathAnimation) ? ( 
   
       <div
       slot ={""}
@@ -226,10 +234,15 @@ const Minion = (level) => {
       id="enemie"
       onClick={hitMinion}
       style={{ left: moveX - 1.2 + "vw", top: moveY - 3.6 + "vh" }}
-    >{ minionHealth}</div>
-  ) : (
-    <></>
-  );
+    ></div>
+  ) : (isDead && deathAnimation) ? (
+    <div className="minion"
+    id="deadenemie"
+    style={{left:moveX-1.2 +"vw", top:moveY-3.6 +"vh"}}
+    >
+    </div>
+  )
+   :<></>;
 };
 
 export default Minion;

@@ -5,7 +5,7 @@ import explosion from "../../../backend/resoruces/images/effects/explosion.gif";
 
 const Bomb = () => {
   const [ref, x, y, isDragging, setRefreshPos] = UseDragging(360, 0);
-  const [text, setText] = useState("Bomb");
+  const [text, setText] = useState("");
   let [seconds, setSeconds] = useState(3);
   const [isExploding, setIsExploding] = useState(false);
   const [elementsToExplode, SetElementsToExplode] = useState([]);
@@ -41,11 +41,11 @@ const Bomb = () => {
         bombCounter = bombCounter - 1;
         if (bombCounter <= 0) {
           clearInterval(timer);
-          setText("Bomb");
+          setText("");
           setReadyCounter(true);
         }
       }, 1000);
-    }, 650);
+    }, 750);
   };
 
   const resetElements = () => {

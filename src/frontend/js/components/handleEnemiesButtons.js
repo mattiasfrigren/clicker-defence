@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { PlayerContext } from "../context/playerContext";
+import {AuthContext} from '../context/authenticatContext';
 import MenuButton from "./menuButtonComp";
 import PopUp from "./popupComp";
 import Minion from "./enemieMinion";
@@ -10,10 +11,10 @@ const HandleEnemiesButton = ({
   leftPos,
   topPos,
   imageSrc,
-  onClick,
   name,
  
 }) => {
+  const authContext = useContext(AuthContext);
   const playerContext = useContext(PlayerContext);
   const [isPopUpShown, setIsPopUpShown] = useState(false);
   const [bombDamage, setBombDamage] = useState(1);
@@ -38,6 +39,7 @@ const HandleEnemiesButton = ({
 
   let timer =null;
   let gambleTimer =null;
+  let waveTimer = null;
 
   const bombInfo = "current cost: " +(bombCost *bombCostMultiplyer) + " damage: " +bombDamage;
   const svenInfo = "current cost: " +(svenCost *svenCostMultiplyer) + " damage: " +svenDamage;
@@ -57,11 +59,7 @@ const HandleEnemiesButton = ({
     setNumberOfMinions(0);
     playerContext.setIsGameRunning(true);
     setWave([]);
-    setTimeout(() => {
-      e.target.disabled = false;
-      playerContext.setIsGameRunning(false);
-      playerContext.setPlayerItemAttribute("minionValues",{level : (currentLevel+1)});
-    }, 88000);
+    
    
   };
 
@@ -217,11 +215,34 @@ setTimeout(()=>{
   }, [numberOfMinions]);
 
   useEffect(()=>{
-    if(playerContext.isGameOver){
+  {/** reset knappen stänger inte av timern tydligen. försök att sätta in timer ===null i ifstatment o se om det löser så att leveln inte går upp */}
+    if(playerContext.isGameRunning){
+    waveTimer = setTimeout(() => { 
+     
+     if(authContext.isSignIn()){
+      document.getElementById("Start0").disabled =false;
+      playerContext.setIsGameRunning(false);
+      playerContext.setPlayerItemAttribute("minionValues",{level : (currentLevel+1)});}
+      else{clearTimeout(waveTimer);
+         console.log("cleared wave")
+        playerContext.setIsGameRunning(false);
+        }
+    }, 88000);
+  }
+ 
+  },[playerContext.isGameRunning],[authContext.isAuthenticated])
+
+  useEffect(()=>{
+    if( playerContext.resetGame ){
       setNumberOfMinions(25)
       setWave([]);
+      playerContext.setIsGameRunning(false)
+      clearTimeout(waveTimer);
+      waveTimer = null;
+      playerContext.setResetGame(false);
     }
-  },[playerContext.isGameOver])
+    
+  },[playerContext.resetGame])
 
   useEffect(() => {
     playerContext.getPlayerValue(setPlayerDamage,  "damage");

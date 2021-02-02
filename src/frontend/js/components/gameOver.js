@@ -14,6 +14,8 @@ const resetGame = () =>{
    playerContext.resetPlayerValues();
    setVisable(false);
    playerContext.setIsGameOver(false);
+   playerContext.setResetGame(true);
+   document.getElementById("Start0").disabled =false;
 }
 
 

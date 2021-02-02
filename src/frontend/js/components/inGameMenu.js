@@ -34,7 +34,7 @@ const playerActionButtonIcons = [
 
 
 const InGameMenu = () => {
-  const menuButtonsName = ["Start", "Info", "Option", "Save and Exit"];
+  const menuButtonsName = ["Start", "Info", "Save and Exit"];
  
   const authContext = useContext(AuthContext);
   const [showInfo, setShowInfo] = useState(false);
@@ -43,10 +43,6 @@ const InGameMenu = () => {
     authContext.signOut();
   }
 
-  const start = () => {
-
-    
-  };
 
   const info = () =>{
      setShowInfo(!showInfo);
@@ -91,7 +87,7 @@ const InGameMenu = () => {
           key={Math.random() * 100000000}
           id={name + index}
           className={MenuButton.name.toLowerCase()}
-          onClick={(name==="Save and Exit") ? logOut : (name==="Info")? info : start}
+          onClick={(name==="Save and Exit") ? logOut : (name==="Info")? info :null}
           leftPos={60}
           topPos={10 * index}
           name={name}
@@ -103,7 +99,6 @@ const InGameMenu = () => {
           key={Math.random() * 100000000}
           id={name + index}
           className={MenuButton.name.toLowerCase()}
-          onClick={start}
           leftPos={60}
           topPos={10 * index}
           name={name}

@@ -12,6 +12,7 @@ export default ({ children }) => {
   const [isEarthQuake, setIsEarthQuake] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
+  const [resetGame, setResetGame] = useState(false);
 
   function getPlayerValue(setAttribute, attribute) {
     dataService
@@ -63,6 +64,8 @@ export default ({ children }) => {
           setIsEarthQuake,
           showInfo,
           setShowInfo,
+          resetGame,
+          setResetGame,
         }}
       >
         {children}
