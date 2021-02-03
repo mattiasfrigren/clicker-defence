@@ -35,7 +35,7 @@ const Login = () =>{
         <NavLink className="startlinks" to="/register">
           To Register
         </NavLink></div>
-        <h1>Clicker Defence</h1>
+        <h1>Clicker Defence 1.0</h1>
         <h1>Login</h1>
         <form>
             <label for="email">Email</label>

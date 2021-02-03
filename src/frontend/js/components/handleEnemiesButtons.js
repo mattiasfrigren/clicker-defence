@@ -198,7 +198,7 @@ setTimeout(()=>{
       <div>
         <MenuButton
           id={id}
-          className={MenuButton.name.toLowerCase()}
+          className={"menubutton"}
           onClick={startWave}
           leftPos={leftPos}
           topPos={topPos}

@@ -82,11 +82,11 @@ const InGameMenu = () => {
 
   const mapMenuButtons = menuButtonsName.map((name, index) => {
     return name !== "Start" ? (
-      <div className={MenuButton.name.toLowerCase() + "div"}>
+      <div className={"menubutton" + "div"}>
         <MenuButton
           key={Math.random() * 100000000}
           id={name + index}
-          className={MenuButton.name.toLowerCase()}
+          className={"menubutton"}
           onClick={(name==="Save and Exit") ? logOut : (name==="Info")? info :null}
           leftPos={60}
           topPos={10 * index}
@@ -94,11 +94,11 @@ const InGameMenu = () => {
         />
       </div>
     ) : (
-      <div className={MenuButton.name.toLowerCase() + "div"}>
+      <div className={"menubutton" + "div"}>
         <HandleEnemiesButton
           key={Math.random() * 100000000}
           id={name + index}
-          className={MenuButton.name.toLowerCase()}
+          className={"menubutton"}
           leftPos={60}
           topPos={10 * index}
           name={name}
