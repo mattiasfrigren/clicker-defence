@@ -52,6 +52,7 @@ const resetValues =(uid) =>{
       healthMultiplyer:1.5,
       critMultiplyer:2,
       dmgMultiplyer :1.5,
+      potionMultiplyer:1,
     },
     bombValues :
     { 

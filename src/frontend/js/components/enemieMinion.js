@@ -142,19 +142,15 @@ const Minion = (level) => {
   const isMinionDead =() =>{
     if (minionHealth <= 0) {
       playerContext.setPlayerAttribute({money: (playerGold +(level.level +coinWorth))});
-      console.log(playerGold);
       setDead(true);
       playDeathAnimation();
     }
   }
 
   const hitMinion = (e) => {
-    console.log(e.type);
-    console.log(minionHealth);
     
     if(playerCritChance >= (Math.floor(Math.random()*101))){
       setMinionHealth((minionHealth = minionHealth - (playerDamage * 2)));
-      console.log("criticalStrike for " + playerDamage * 2)
     }
     else{ 
     setMinionHealth((minionHealth = minionHealth - playerDamage));
@@ -210,7 +206,6 @@ const Minion = (level) => {
   }, [moveX, moveY]);
 
   useEffect(() => {
-    console.log(isDead + " is it dead?");
   }, [isDead]);
 
   useEffect(()=>{
@@ -229,7 +224,8 @@ const Minion = (level) => {
   return (!isDead && !deathAnimation) ? ( 
   
       <div
-      slot ={""}
+     
+      slot ={"test"}
       className="minion"
       id="enemie"
       onClick={hitMinion}

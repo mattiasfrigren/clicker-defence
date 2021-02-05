@@ -36,14 +36,15 @@ const HandleEnemiesButton = ({
   const [playerGold, setPlayerGold] = useState(1);
   let [wave, setWave] = useState([]);
   let [numberOfMinions, setNumberOfMinions] = useState(25);
+  let [waveLenght, setWaveLenght ] = useState(92);
 
   let timer =null;
   let gambleTimer =null;
   let waveTimer = null;
 
-  const bombInfo = "current cost: " +(bombCost *bombCostMultiplyer) + " damage: " +bombDamage;
-  const svenInfo = "current cost: " +(svenCost *svenCostMultiplyer) + " damage: " +svenDamage;
-  const lightingInfo = "number of strikes left: " +(lightningStrikes) + "will damage u for: " + (Math.floor(playerHealth/2));
+  const bombInfo = "upgrade cost: " +(bombCost *bombCostMultiplyer) + " current damage: " +bombDamage;
+  const svenInfo = "upgrade cost: " +(svenCost *svenCostMultiplyer) + " current damage: " +svenDamage;
+  const lightingInfo = (lightningStrikes) + " strikes left will damage you for: " + (Math.floor(playerHealth/2));
   const earthquakeInfo = "shakes screen and damages all enemies for: " + Math.floor((currentLevel*10) /2) + " 60sec cooldown";
   const gambleInfo = "roll the dice and gamble with your money. 30sec cooldown";
   
@@ -216,28 +217,39 @@ setTimeout(()=>{
 
   useEffect(()=>{
   {/** reset knappen stänger inte av timern tydligen. försök att sätta in timer ===null i ifstatment o se om det löser så att leveln inte går upp */}
-    if(playerContext.isGameRunning){
-    waveTimer = setTimeout(() => { 
-     
-     if(authContext.isSignIn()){
+  if(name==="Start"){
+if(playerContext.isGameRunning){
+  waveTimer = setInterval(()=>{
+    setWaveLenght(waveLenght= waveLenght-1);
+console.log(waveLenght)
+    if(waveLenght <=0){
       document.getElementById("Start0").disabled =false;
-      playerContext.setIsGameRunning(false);
-      playerContext.setPlayerItemAttribute("minionValues",{level : (currentLevel+1)});}
-      else{clearTimeout(waveTimer);
-         console.log("cleared wave")
-        playerContext.setIsGameRunning(false);
-        }
-    }, 88000);
-  }
- 
-  },[playerContext.isGameRunning],[authContext.isAuthenticated])
+playerContext.setIsGameRunning(false);
+setWaveLenght(92);
+playerContext.setPlayerItemAttribute("minionValues",{level : (currentLevel+1)});
+clearInterval(waveTimer);
+console.log("wave over");
+    }
+
+
+  },1000);
+  return () =>{
+    clearInterval(waveTimer)
+    playerContext.setIsGameRunning(false);
+    setWaveLenght(92);
+    console.log("logged out")
+    console.log(waveLenght)
+   }
+}
+}
+  },[playerContext.isGameRunning])
 
   useEffect(()=>{
     if( playerContext.resetGame ){
       setNumberOfMinions(25)
       setWave([]);
       playerContext.setIsGameRunning(false)
-      clearTimeout(waveTimer);
+      clearInterval(waveTimer);
       waveTimer = null;
       playerContext.setResetGame(false);
     }

@@ -1,0 +1,17 @@
+body {
+    background-color: rgb(60, 141, 60);
+    overflow: hidden;
+    margin: 0;
+    background: url('../../backend/resoruces/images/tiles/defencebackground.png')no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .creatorinfo{
+    position: fixed;
+    top: 90vh;
+    left: 42vw;
+    font-weight: bold;
+    text-align: center;
+  }

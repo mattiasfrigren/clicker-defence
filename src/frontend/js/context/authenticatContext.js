@@ -17,10 +17,12 @@ export default ({ children }) => {
       health: 20,
       money: 20,
       lightningStrikes :5,
+      highscore:1,
       upgradeValues:{
         healthMultiplyer:1.5,
         critMultiplyer:2,
         dmgMultiplyer :1.5,
+        potionMultiplyer:1,
       },
       bombValues :
       { 
@@ -42,21 +44,17 @@ export default ({ children }) => {
     dataService.create(postTemplate);
   }
 
-  function getPlayer(user) {
+  function getPlayer(user, setErrorMessage) {
    if(dataService.firebaseAuth().currentUser){
      dataService.firebaseAuth().signOut();
-     console.log(dataService.firebaseAuth().currentUser)
    }
-   console.log(dataService.firebaseAuth().currentUser)
-   
     dataService.firebaseAuth().signInWithEmailAndPassword(user.email, user.password).then((user)=>{
      if(user.user.uid===dataService.firebaseAuth().currentUser.uid){
        setAuthenticated(true)
        
      }
     }).catch((error)=>{
-      console.log(error.message)
-      return error.message;
+      setErrorMessage(error.message)
     })
   }
   

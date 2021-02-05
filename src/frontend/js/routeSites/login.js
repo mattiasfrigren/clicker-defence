@@ -1,4 +1,5 @@
 import React, {  useState, useContext, useEffect  } from 'react';
+import '../../css/startpage.css'
 import {useHistory, NavLink} from 'react-router-dom';
 import {AuthContext} from '../context/authenticatContext';
 
@@ -7,18 +8,17 @@ const Login = () =>{
     const authContext = useContext(AuthContext);
     const history = useHistory();
     const [user, setUser] = useState({userName: "", passWord: ""});
-  
+    const [errorMessage, setErrorMessage] = useState("");
+
     const change = (e) =>{
         setUser({...user, [e.target.name]: e.target.value});
-        console.log(user);
     };
 
     const submit = async (e) =>{
         e.preventDefault();   
      const login ={email:user.userName, password:user.passWord}
-    await authContext.getPlayer(login);
+    await authContext.getPlayer(login,setErrorMessage);
   
-    console.log(authContext.isAuthenticated)
     }
 
     useEffect(()=>{
@@ -38,7 +38,7 @@ const Login = () =>{
         <h1>Clicker Defence 1.0</h1>
         <h1>Login</h1>
         <form>
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
             name="userName"
             placeholder="Email"
@@ -47,7 +47,7 @@ const Login = () =>{
             >
             </input>
 
-            <label for ="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
             type="password"
             name="passWord"
@@ -65,8 +65,9 @@ const Login = () =>{
             >
                 Login
             </button>
-        
+        {errorMessage && <p>{errorMessage}</p>}
         </div>
+        <small className="creatorinfo" >Mattias Frigren <br/> mattiasfrigren@gmail.com</small>
         </div>
     )
 };

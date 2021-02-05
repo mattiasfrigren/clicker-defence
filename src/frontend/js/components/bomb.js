@@ -17,7 +17,6 @@ const Bomb = () => {
     SetElementsToExplode([]);
     timer = setInterval(() => {
       setText(seconds);
-      console.log(seconds);
       setSeconds((seconds = seconds - 1));
       if (seconds <= -1) {
         clearInterval(timer);
@@ -39,7 +38,7 @@ const Bomb = () => {
       timer = setInterval(() => {
         setText(bombCounter);
         bombCounter = bombCounter - 1;
-        if (bombCounter <= 0) {
+        if (bombCounter <= -1) {
           clearInterval(timer);
           setText("");
           setReadyCounter(true);

@@ -32,7 +32,6 @@ const Sven = () => {
       timer =setInterval(()=>{
         castingTime= castingTime -1;
         if(castingTime <=-1){
-  console.log("attack ready")
   clearInterval(timer);
   setAttackReady(true);
         }

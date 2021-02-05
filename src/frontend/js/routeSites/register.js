@@ -1,4 +1,5 @@
 import React, { useState,  useContext } from "react";
+import '../../css/startpage.css'
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/authenticatContext";
 
@@ -17,7 +18,6 @@ const Register = () => {
 
   const change = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
   };
 
   const onRegistration =(e)=>{
@@ -41,7 +41,6 @@ const Register = () => {
         authContext.createNewPlayer(data);
         setInfoMessage("account Created!")
     }
-console.log(e);
   }
 
   return (
@@ -53,35 +52,35 @@ console.log(e);
     <h1>Clicker Defence</h1>
       <h1>Register</h1>
       <form>
-        <label for="uName">Username</label>
+        <label htmlFor="uName">Username</label>
         <input
           type="text"
           name="userName"
-          placeholder="UserName"
+          placeholder="username"
           value={user.userName}
           onChange={change}
         ></input>
-<label for="password">Password</label>
+<label htmlFor="password">Password</label>
         <input
           type="password"
           name="password"
-          placeholder="PassWord"
+          placeholder="password"
           value={user.passWord}
           onChange={change}
         ></input>
-<label for="password2">Password 2</label>
+<label htmlFor="password2">Confirm Password</label>
         <input
           type="password"
           name="password2"
-          placeholder="PassWord2"
+          placeholder="password"
           value={user.passWord2}
           onChange={change}
         ></input>
-  <label for="email">Email</label>
+  <label htmlFor="email">Email</label>
         <input
           type="text"
           name="email"
-          placeholder="Email"
+          placeholder="email"
           value={user.email}
           onChange={change}
         ></input>
@@ -97,6 +96,7 @@ console.log(e);
       {infoMessage && <p>{infoMessage}</p>}
       
     </div>
+    <small className="creatorinfo" >Mattias Frigren <br/> mattiasfrigren@gmail.com</small>
     </div>
   );
 };

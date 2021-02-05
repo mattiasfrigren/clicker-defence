@@ -1,4 +1,5 @@
 import React, { memo, useEffect, useState, useContext } from "react";
+import '../../css/gameplay.css'
 import Tile from "../components/maptile";
 import { GameMap } from "../../../backend/commonutils/gamemap";
 import Player from "../components/player";

@@ -37,7 +37,6 @@ const ActionButtonComponent = ({id, className, leftPos, topPos, imageSrc, iconNa
     else{
       console.log(playerGold + " not enough money")
     }
-    console.log(costDamageMultiplyer);
 }
 
 const buyCriticalChance = () =>{
@@ -83,26 +82,22 @@ const buyMinionWealth = () =>{
 
 
 const randomPotion = () =>{
-  const cost =30; if(playerGold >= (cost *costPotionMultiplyer)){   
+  const cost =20; if(playerGold >= (cost *costPotionMultiplyer)){   
     playerContext.setPlayerAttribute({money: (playerGold - (cost *costPotionMultiplyer))});
     playerContext.setPlayerItemAttribute("upgradeValues",{potionMultiplyer : (costPotionMultiplyer + 1)})
     var randomNumber = Math.floor(Math.random()*4);
   switch (randomNumber) {
     case 0:
       playerContext.setPlayerAttribute({"damage":(playerDamage +3)})
-      console.log(buyDamage.name)
       break;
   case 1:
     playerContext.setPlayerAttribute({"criticalChance":(playerCritChance +0.5)})
-    console.log(buyCriticalChance.name)
     break;
     case 2:
       playerContext.setPlayerItemAttribute("minionValues",{coinWorthMultiplyer : (minionWealth + 1)})
-      console.log(buyMinionWealth.name)
     break;
     default:
       playerContext.setPlayerAttribute({"health":(playerHealth +1)})
-      console.log(buyHealth.name)
       break;
   }
 }

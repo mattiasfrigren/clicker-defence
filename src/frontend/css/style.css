@@ -9,11 +9,6 @@ html{
   
   font-family: 'VT323', monospace;
 }
-body {
-  background-color: rgb(60, 141, 60);
-  overflow: hidden;
-  margin: 0;
-}
 
 h3{
   color: black;
@@ -24,6 +19,7 @@ h3{
 
 .startDiv{
   position: absolute;
+  
 height: 97vh;
 width: 98vw;
 }
@@ -44,6 +40,7 @@ input{
 }
 
 label{
+  font-weight: bold;
   display:grid;
   position: relative;
   text-align: left;
@@ -102,6 +99,7 @@ button:focus{
   height: 3vh;
 }
 .tree{
+  background-color: rgb(60, 141, 60);
   position: absolute;
   top: 0px;
   left: 0px;
@@ -119,7 +117,14 @@ button:focus{
   width: 1.5vw;
   height: 3vh;
 }
+
 .minion {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -181,7 +186,7 @@ button:focus{
 
 #playerValues {
   position: absolute;
-  top: 66vh;
+  top: 63vh;
   left: 3vw;
 }
 .playertag{
@@ -283,7 +288,7 @@ img.iconButtons {
   }
 }
 #resetButton{
-  background-color: greenyellow ;
+  background-color:  rgb(158, 233, 47) ;
   position: relative;
   border-radius: 15%;
   font-size: 120%;
@@ -293,6 +298,10 @@ img.iconButtons {
   top: 50%;
 }
 
+#resetButton:hover{
+  
+  animation: blink normal 1s infinite ease-in-out;
+}
 
 /*//////////*/
 /*PopUp*/

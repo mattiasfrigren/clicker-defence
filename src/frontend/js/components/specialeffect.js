@@ -3,7 +3,7 @@ import { PlayerContext } from "../context/playerContext";
 import EarthQuake from './earthquake';
 import Thunder from '../../../backend/resoruces/images/effects/Thunder.gif';
 import demonEffect from '../../../backend/resoruces/images/effects/demonEffect.gif';
-import rocks from '../../../backend/resoruces/images/effects/rocks.png';
+import earthquake from '../../../backend/resoruces/images/effects/earthquake.png';
 
 const SpecialEffect = () =>{
 
@@ -55,7 +55,7 @@ const SpecialEffect = () =>{
 
     return(
         <div>
-           {playerContext.isEarthQuake ? <EarthQuake children ={<img id="earthquake" src={rocks}></img>} /> :<></> } 
+           {playerContext.isEarthQuake ? <EarthQuake children ={<img id="earthquake" src={earthquake}></img>} /> :<></> } 
          
             {lightningEffect}
             {corruptionEffect}
