@@ -52,7 +52,7 @@ const Bomb = () => {
       return (elem.slot = "");
     });
   };
-
+{/** i, j are y/x lenght for explosion radius */}
   const getAllExplodedElements = () => {
     var i = Math.floor(y * 0.16393442622950818) - 4;
     var rangeY = i + 16;
