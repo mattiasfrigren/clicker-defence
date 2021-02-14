@@ -141,43 +141,27 @@ button:focus{
 #enemie {
   width: 3.90625vw;
   height: 8.19672131147541vh;
-  background: url("../../backend/resoruces/images/Character2/Run.png") left
-    center;
+  background: url("../../backend/resoruces/images/minionimgs/run.gif");
   background-size: cover;
-  animation: playRun 1.5s steps(6) infinite;
   display: inline-block;
   
 }
 #enemie:active {
-  background: url("../../backend/resoruces/images/Character2/Take Hit.png") left
-    center;
-  animation: playTakeHit 0.1s steps(4);
-}
-#deadenemie{
-  background-size: cover;
   width: 3.90625vw;
   height: 8.19672131147541vh;
   display: inline-block;
-  background: url("../../backend/resoruces/images/Character2/Death.png")left center;
-  animation: deathAnimation 1s steps(8);
+  background-size: cover;
+  background: url("../../backend/resoruces/images/minionimgs/take\ hit.gif") center;
+  background-repeat: no-repeat;  
 }
-
-@keyframes deathAnimation {
-  100%{
-    background-position:31.25vw ;
-  }
-}
-
-@keyframes playTakeHit {
-  100% {
-    background-position: 15.625vw;
-  }
-}
-
-@keyframes playRun {
-  100% {
-    background-position: 23.4375vw;
-  }
+#deadenemie{
+  background-size: cover;
+  display: inline-block;
+  width: 3.90625vw;
+  height: 8.19672131147541vh;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background: url("../../backend/resoruces/images/minionimgs/death.gif") center;
 }
 
 /*//////////*/
@@ -274,19 +258,15 @@ img.iconButtons {
 }
 #menuImgHolder{
   position: relative;
-  left: 45%;
-  top: 15%;
+  left: 25%;
+  top: 6%;
   width: 7.8125vw;
   height: 16.39344262295082vh;
-  background: url("../../backend/resoruces/images/Character2/ingameidle.png") left
-    center;
-  animation: playidlemenu 2.2s steps(16) infinite;
+  background: url("../../backend/resoruces/images/minionimgs/idleingame.gif") center;
+  background-repeat: no-repeat;
+  display: inline-block;
 }
-@keyframes playidlemenu{
-  100% {
-    background-position: 125vw;
-  }
-}
+
 #resetButton{
   background-color:  rgb(158, 233, 47) ;
   position: relative;
@@ -295,7 +275,7 @@ img.iconButtons {
   width:15vw;
   height: 7.5vh;
   left: 41%;
-  top: 50%;
+  top: 38%;
 }
 
 #resetButton:hover{

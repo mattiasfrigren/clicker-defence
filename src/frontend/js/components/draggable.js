@@ -43,25 +43,15 @@ function UseDragging(X,Y) {
       e.stopPropagation();
       e.preventDefault();
     }
-  
-    // When the element mounts, attach an mousedown listener
-    useEffect(() => {
+    
+   useEffect(() => {
   
       
       ref.current.addEventListener("mousedown", onMouseDown);
- {/** 
-      return () => {
-      
-        ref.current.removeEventListener("mousedown", onMouseDown); 
-    executes error on log out
-    
-        
-      };
-    */}
+ 
     }, [ref.current]);
   
-    // Everytime the isDragging state changes, assign or remove
-    // the corresponding mousemove and mouseup handlers
+   
     useEffect(() => {
       if (isDragging) {
         document.addEventListener("mouseup", onMouseUp);

@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import MenuButton from "./menuButtonComp";
 import HandleEnemiesButton from "./handleEnemiesButtons";
 import ActionButtonComponent from './actionbuttonComp';
@@ -125,8 +125,3 @@ const InGameMenu = () => {
 
 export default InGameMenu;
 
-{/** set us for this rend aswell. might need to change the css a lite bit for screen purpose in the new div. 
-alsow make sure att the ButtonComp will rename to "actionButtonComp" or something since there are 2 types of action buttons. "handkeEnemies"
-and the other one that will effect thep action button player and playstyle. 
-                            U CAN DO DIS!!!!!!
-*/}

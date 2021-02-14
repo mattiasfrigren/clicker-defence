@@ -3,8 +3,6 @@ import dataService from "../../../backend/firebase/firebaseService";
 export const PlayerContext = createContext();
 
 export default ({ children }) => {
-  const [playerHealth, setPlayerHealth] = useState(10);
-  const [playerGold, setPlayerGold] = useState(0);
   const [isThunder, setIsThunder] = useState(false);
   const [criticalChance, setCriticalChance] = useState(0);
   const [isGameRunning, setIsGameRunning] = useState(false);
@@ -44,10 +42,6 @@ export default ({ children }) => {
         value={{
           getPlayerValue,
           setPlayerAttribute,
-          playerHealth,
-          setPlayerHealth,
-          playerGold,
-          setPlayerGold,
           isThunder,
           setIsThunder,
           criticalChance,

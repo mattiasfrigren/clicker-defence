@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { BrowserRouter, Switch, Redirect, Route} from 'react-router-dom';
+import { BrowserRouter, Route} from 'react-router-dom';
 import GamePlay from '../routeSites/gamePlay';
 import Login from '../routeSites/login';
 import Register from '../routeSites/register';

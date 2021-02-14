@@ -34,7 +34,9 @@ const Minion = (level) => {
       return -1.5;
     }
   };
-
+{/** checks the direction the minion is going and if the tile infront of it is grass type. 
+if its a grass type it gets the new direction for the minion. and it alsow moves the minion forward
+*/}
   const getDirection = () => {
     let elemDir = currentElemDir();
     let elem =
@@ -135,7 +137,6 @@ const Minion = (level) => {
   const explodedTile = (slotValue) =>{
     if(slotValue ==="exploded"){
     setMinionHealth(minionHealth = minionHealth-bombDamage);
-    console.log(" ohhh bomb hurt :" + minionHealth);
     }
   }
 
@@ -147,7 +148,7 @@ const Minion = (level) => {
     }
   }
 
-  const hitMinion = (e) => {
+  const hitMinion = () => {
     
     if(playerCritChance >= (Math.floor(Math.random()*101))){
       setMinionHealth((minionHealth = minionHealth - (playerDamage * 2)));

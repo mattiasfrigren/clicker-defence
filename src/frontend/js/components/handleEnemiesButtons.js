@@ -1,6 +1,5 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { PlayerContext } from "../context/playerContext";
-import {AuthContext} from '../context/authenticatContext';
 import MenuButton from "./menuButtonComp";
 import PopUp from "./popupComp";
 import Minion from "./enemieMinion";
@@ -14,7 +13,6 @@ const HandleEnemiesButton = ({
   name,
  
 }) => {
-  const authContext = useContext(AuthContext);
   const playerContext = useContext(PlayerContext);
   const [isPopUpShown, setIsPopUpShown] = useState(false);
   const [bombDamage, setBombDamage] = useState(1);
@@ -51,10 +49,9 @@ const HandleEnemiesButton = ({
   const addEnemie = () => {
     setWave((wave) => [...wave, <Minion level ={currentLevel} />]);
     setNumberOfMinions((numberOfMinions = numberOfMinions + 1));
-    console.log(wave);
    
   };
-{/** fix this error for log out in the timeout */}
+
   const startWave = (e) => {
     e.target.disabled = true;
     setNumberOfMinions(0);
@@ -216,19 +213,16 @@ setTimeout(()=>{
   }, [numberOfMinions]);
 
   useEffect(()=>{
-  {/** reset knappen stänger inte av timern tydligen. försök att sätta in timer ===null i ifstatment o se om det löser så att leveln inte går upp */}
   if(name==="Start"){
 if(playerContext.isGameRunning){
   waveTimer = setInterval(()=>{
     setWaveLenght(waveLenght= waveLenght-1);
-console.log(waveLenght)
     if(waveLenght <=0){
       document.getElementById("Start0").disabled =false;
 playerContext.setIsGameRunning(false);
 setWaveLenght(92);
 playerContext.setPlayerItemAttribute("minionValues",{level : (currentLevel+1)});
 clearInterval(waveTimer);
-console.log("wave over");
     }
 
 
@@ -237,8 +231,6 @@ console.log("wave over");
     clearInterval(waveTimer)
     playerContext.setIsGameRunning(false);
     setWaveLenght(92);
-    console.log("logged out")
-    console.log(waveLenght)
    }
 }
 }

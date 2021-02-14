@@ -8,15 +8,11 @@ const Player = () => {
   const [playerHealth, setPlayerHealth] = useState(1);
   const [playerGold, setPlayerGold] = useState(1);
   const [playerCritChance, setPlayerCritChance] = useState(0);
-  const [isGameRunning, setIsGameRunning] = useState(false);
   const [player, setPlayer] = useState("");
   const [highScore, setHighScore] = useState(0);
   const [currentLevel, setCurrentLevel] = useState(0);
-  const [enemieSlots, setEnemieSlots] = useState([]);
-
-  const getAllEnemiesSlots = () =>{
-    setEnemieSlots(document.getElementsByClassName("minion"));
-  }
+  
+  
 
   useEffect(()=>{
     playerContext.getPlayerValue(setPlayerDamage, "damage");
@@ -26,14 +22,9 @@ const Player = () => {
     playerContext.getPlayerValue(setPlayer,"name");
     playerContext.getPlayerValue(setHighScore, "highscore");
     playerContext.getPlayerValue(setCurrentLevel, "minionValues/level");
-    setIsGameRunning(playerContext.isGameRunning);
    
   })
-  useEffect(()=>{
-    getAllEnemiesSlots();
-    console.log(enemieSlots)
-  },[playerHealth])
-
+  
   useEffect(()=>{
     if(currentLevel >highScore){
       playerContext.setPlayerAttribute({ highscore: currentLevel});

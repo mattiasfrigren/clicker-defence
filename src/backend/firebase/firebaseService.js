@@ -19,7 +19,6 @@ const create = async (data) => {
     const user = await firebase
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
-    console.log(user.user.uid);
     data.uid = user.user.uid;
     firebase
       .database()
