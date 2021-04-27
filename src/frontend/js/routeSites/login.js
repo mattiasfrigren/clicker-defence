@@ -22,6 +22,7 @@ const Login = () =>{
     }
     const playAsGuest = (e)=>{
         e.preventDefault();
+        e.target.disabled =true;
         let guestId = Math.floor(Math.random()*10000000);
         setGuestPlayer({userName: "Guest" + guestId, password: "guest2", email: "guest@"+guestId+".com"});
     }
