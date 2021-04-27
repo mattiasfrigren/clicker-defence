@@ -15,3 +15,8 @@ body {
     font-weight: bold;
     text-align: center;
   }
+  #guestPlayer{
+    margin-left: 1%;
+    height: 4vh;
+    width: 9vw;
+  }

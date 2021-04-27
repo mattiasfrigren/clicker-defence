@@ -4,7 +4,7 @@ import {useHistory, NavLink} from 'react-router-dom';
 import {AuthContext} from '../context/authenticatContext';
 
 const Login = () =>{
-
+    const [guestPlayer, setGuestPlayer] = useState({userName: "", password: "", email: ""});
     const authContext = useContext(AuthContext);
     const history = useHistory();
     const [user, setUser] = useState({userName: "", passWord: ""});
@@ -20,12 +20,31 @@ const Login = () =>{
     await authContext.getPlayer(login,setErrorMessage);
   
     }
-
+    const playAsGuest = (e)=>{
+        e.preventDefault();
+        let guestId = Math.floor(Math.random()*10000000);
+        setGuestPlayer({userName: "Guest" + guestId, password: "guest2", email: "guest@"+guestId+".com"});
+    }
+    async function fetchData(){
+        const loginGuest = {email: guestPlayer.email, password: guestPlayer.password};
+        await authContext.getPlayer(loginGuest,setErrorMessage);
+        }
     useEffect(()=>{
         if( authContext.isAuthenticated)   {
             history.push("/gameplay");
          }
     },[authContext.isAuthenticated])
+
+    useEffect(()=>{
+     
+        if(guestPlayer.userName!==""&& guestPlayer.password!==""){
+        authContext.createNewPlayer(guestPlayer);
+        setTimeout(()=>{
+            fetchData();
+        },2000)
+        
+    }
+    },[guestPlayer])
 
     return (
         <div className="startDiv">
@@ -35,7 +54,7 @@ const Login = () =>{
         <NavLink className="startlinks" to="/register">
           To Register
         </NavLink></div>
-        <h1>Clicker Defence 1.0</h1>
+        <h1>Clicker Defence 1.1</h1>
         <h1>Login</h1>
         <form>
             <label htmlFor="email">Email</label>
@@ -64,6 +83,14 @@ const Login = () =>{
             type="submit"
             >
                 Login
+            </button>
+            <button
+            className="submit"
+            onClick={playAsGuest}
+            type="submit"
+            id="guestPlayer"
+            >
+                Play as guest
             </button>
         {errorMessage && <p>{errorMessage}</p>}
         </div>
